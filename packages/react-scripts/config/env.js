@@ -12,6 +12,7 @@ const fs = require('fs');
 const path = require('path');
 const paths = require('./paths');
 
+// paths.js에서 .env 변수들을 읽는지 확인하십시오.
 // Make sure that including paths.js after env.js will read .env variables.
 delete require.cache[require.resolve('./paths')];
 

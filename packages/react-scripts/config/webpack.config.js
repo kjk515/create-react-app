@@ -40,10 +40,12 @@ const postcssNormalize = require('postcss-normalize');
 
 // Source maps are resource heavy and can cause out of memory issue for large source files.
 const shouldUseSourceMap = process.env.GENERATE_SOURCEMAP !== 'false';
+// 웹 요청을 저장하는 것을 필요로 하지 않을 경우 원활한 빌드 프로세스를 위해 인라인화하지 않는다.
 // Some apps do not need the benefits of saving a web request, so not inlining the chunk
 // makes for a smoother build process.
 const shouldInlineRuntimeChunk = process.env.INLINE_RUNTIME_CHUNK !== 'false';
 
+// TypeScript가 설정되었는지 확인
 // Check if TypeScript is setup
 const useTypeScript = fs.existsSync(paths.appTsConfig);
 
@@ -53,22 +55,31 @@ const cssModuleRegex = /\.module\.css$/;
 const sassRegex = /\.(scss|sass)$/;
 const sassModuleRegex = /\.module\.(scss|sass)$/;
 
+// development, production 모드 별 config파일 나눌 수 있을듯
 // This is the production and development configuration.
 // It is focused on developer experience, fast rebuilds, and a minimal bundle.
 module.exports = function(webpackEnv) {
   const isEnvDevelopment = webpackEnv === 'development';
   const isEnvProduction = webpackEnv === 'production';
 
+  // 웹팩은 'publicPath'를 이용해 앱이 어디서 제공되고 있는지 파악한다.
+  // 후행 슬래시가 필요하며, 그렇지 않으면 파일 자원이 잘못된 경로를 얻게 될 것이다.
+  // development 모드에서는 구성을 쉽게하기 위해 항상 root에서 제공한다.
   // Webpack uses `publicPath` to determine where the app is being served from.
   // It requires a trailing slash, or the file assets will get an incorrect path.
   // In development, we always serve from the root. This makes config easier.
   const publicPath = isEnvProduction
     ? paths.servedPath
     : isEnvDevelopment && '/';
+  // 일부 앱은 pushState를 사용하여 클라이언트측 라우팅을 사용하지 않는다.
+  // 이러한 경우 "homepage"를 "."로 설정하여 상대적 자원 경로를 활성화할 수 있다.
   // Some apps do not use client-side routing with pushState.
   // For these, "homepage" can be set to "." to enable relative asset paths.
   const shouldUseRelativeAssetPaths = publicPath === './';
 
+  // `publicUrl`은 `publicPath`와 같다.
+  // %PUBLIC_URL% in `index.html` and `process.env.PUBLIC_URL` in JavaScript 로 제공되기 위함이다.
+  // 후행 슬래시를 생략했다. as %PUBLIC_URL%/xyz looks better than %PUBLIC_URL%xyz.
   // `publicUrl` is just like `publicPath`, but we will provide it to our app
   // as %PUBLIC_URL% in `index.html` and `process.env.PUBLIC_URL` in JavaScript.
   // Omit trailing slash as %PUBLIC_URL%/xyz looks better than %PUBLIC_URL%xyz.
@@ -96,6 +107,7 @@ module.exports = function(webpackEnv) {
         // package.json
         loader: require.resolve('postcss-loader'),
         options: {
+          // 외부 css를 import 하기 위해 필수적이다.
           // Necessary for external CSS imports to work
           // https://github.com/facebook/create-react-app/issues/2677
           ident: 'postcss',
@@ -153,6 +165,7 @@ module.exports = function(webpackEnv) {
         require.resolve('react-dev-utils/webpackHotDevClient'),
       // Finally, this is your app's code:
       paths.appIndexJs,
+      // 초기화 중 런타임오류 발생시 devServer Client가 종료되지 않도록 appIndexJs가 마지막으로 포함됨
       // We include the app code last so that if there is a runtime error during
       // initialization, it doesn't blow up the WebpackDevServer client, and
       // changing JS code would still trigger a refresh.
@@ -188,6 +201,7 @@ module.exports = function(webpackEnv) {
     optimization: {
       minimize: isEnvProduction,
       minimizer: [
+        // production 모드에서만 사용됩니다.
         // This is only used in production mode
         new TerserPlugin({
           terserOptions: {
@@ -233,6 +247,7 @@ module.exports = function(webpackEnv) {
           cache: true,
           sourceMap: shouldUseSourceMap,
         }),
+        // production 모드에서만 사용됩니다.
         // This is only used in production mode
         new OptimizeCSSAssetsPlugin({
           cssProcessorOptions: {
@@ -250,6 +265,7 @@ module.exports = function(webpackEnv) {
           },
         }),
       ],
+      // 자동으로 vendor와 commons를 split 해줌
       // Automatically split vendor and commons
       // https://twitter.com/wSokra/status/969633336732905474
       // https://medium.com/webpack/webpack-4-code-splitting-chunk-graph-and-the-splitchunks-optimization-be739a861366
@@ -287,10 +303,14 @@ module.exports = function(webpackEnv) {
         // Adds support for installing with Plug'n'Play, leading to faster installs and adding
         // guards against forgotten dependencies and such.
         PnpWebpackPlugin,
+        // 개발자가 src/(또는 node_modules/) 바깥쪽 파일을 import하여 접근하지 못하도록 막는다.
+        // babel로 src/ 내에서만 파일을 처리하므로 종종 혼란을 야기하기 때문이다.
+        // 만일 이것이 가능하도록 하고 싶다면,
         // Prevents users from importing files from outside of src/ (or node_modules/).
         // This often causes confusion because we only process files within src/ with babel.
         // To fix this, we prevent you from importing files out of src/ -- if you'd like to,
         // please link the files into your node_modules/ and let module-resolution kick in.
+        // 원본 파일은 어떤 방식으로도 처리되지 않으므로 컴파일되었는지 주의하십시오.
         // Make sure your source files are compiled, as they will not be processed in any way.
         new ModuleScopePlugin(paths.appSrc, [paths.appPackageJson]),
       ],
@@ -305,9 +325,11 @@ module.exports = function(webpackEnv) {
     module: {
       strictExportPresence: true,
       rules: [
+        // 비표준언어이므로 Disable require.ensure
         // Disable require.ensure as it's not a standard language feature.
         { parser: { requireEnsure: false } },
 
+        // 먼저 linter를 실행한다. Babel이 JS를 처리하기 전에 실행하는 것이 중요하다.
         // First, run the linter.
         // It's important to do this before Babel processes the JS.
         {
@@ -319,6 +341,7 @@ module.exports = function(webpackEnv) {
                 formatter: require.resolve('react-dev-utils/eslintFormatter'),
                 eslintPath: require.resolve('eslint'),
                 // @remove-on-eject-begin
+                // configFile: `${paths.ownPath}/config/eslint/.eslintrc`,
                 baseConfig: {
                   extends: [require.resolve('eslint-config-react-app')],
                 },
@@ -332,10 +355,14 @@ module.exports = function(webpackEnv) {
           include: paths.appSrc,
         },
         {
+          // "one off"는 요건과 일치할 때까지 다음의 모든 로더를 통과한다.
+          // 일치하는 로더가 없을 경우 로더 목록의 끝에 있는 "파일" 로더로 떨어진다.
           // "oneOf" will traverse all following loaders until one will
           // match the requirements. When no loader matches it will fall
           // back to the "file" loader at the end of the loader list.
           oneOf: [
+            // "url" 로더는 "file" 로더처럼 작동한다.
+            // 잦은 request를 피하기 위해 지정된 limit보다 작은 자원을 데이터 URL로 내장한다는 점이 다르다.
             // "url" loader works like "file" loader except that it embeds assets
             // smaller than specified limit in bytes as data URLs to avoid requests.
             // A missing `test` is equivalent to a match.
@@ -347,6 +374,8 @@ module.exports = function(webpackEnv) {
                 name: 'static/media/[name].[hash:8].[ext]',
               },
             },
+            // 앱 내의 JS를 위한 바벨로더
+            // JSX, Flow, TypeScript 및 일부 ESnext 기능 설정
             // Process application JS with Babel.
             // The preset includes JSX, Flow, TypeScript, and some ESnext features.
             {
@@ -389,7 +418,12 @@ module.exports = function(webpackEnv) {
                       },
                     },
                   ],
+                  [require.resolve('@babel/plugin-proposal-decorators'), { "legacy": true }], // NARA: decorator 사용
+                  [require.resolve('@babel/plugin-proposal-class-properties'), { "loose": true }], // NARA: class static 속성 사용
+                  'react-docgen', // NARA: 컴포넌트 문서 생성
                 ],
+                // 웹팩용 바벨로더의 기능(not Babel itself).
+                // ./node_modules/.cache/babel-loader/ 디렉토리의 캐싱결과를 활성화하여 재구축 시간을 단축한다.
                 // This is a feature of `babel-loader` for webpack (not Babel itself).
                 // It enables caching results in ./node_modules/.cache/babel-loader/
                 // directory for faster rebuilds.
@@ -398,6 +432,8 @@ module.exports = function(webpackEnv) {
                 compact: isEnvProduction,
               },
             },
+            // 앱 외의 js를 위한 바벨로더
+            // 앱 JS와 달리 표준 ES 기능만 컴파일한다.
             // Process any JS outside of the app with Babel.
             // Unlike the application JS, we only compile the standard ES features.
             {
@@ -500,6 +536,9 @@ module.exports = function(webpackEnv) {
                 'sass-loader'
               ),
             },
+            // 파일로더는 WebpackDevServer가 모든 자원을 제공하도록 보장한다. 자원을 'import'하면 그 자원(가상의) 파일명을 얻게 된다.
+            // production 모드에서는 자원은 '빌드' 폴더로 복사될 것이다.
+            // 이 로더는 "test"를 사용하지 않기 때문에 다른 로더를 통해 떨어지는 모든 모듈을 잡을 수 있다.
             // "file" loader makes sure those assets get served by WebpackDevServer.
             // When you `import` an asset, you get its (virtual) filename.
             // In production, they would get copied to the `build` folder.
@@ -516,6 +555,8 @@ module.exports = function(webpackEnv) {
                 name: 'static/media/[name].[hash:8].[ext]',
               },
             },
+            // ** Loader의 끝 **
+            // loader를 추가하려면 fileloader 이전에 추가하세요.
             // ** STOP ** Are you adding a new loader?
             // Make sure to add the new loader(s) before the "file" loader.
           ],
@@ -523,6 +564,7 @@ module.exports = function(webpackEnv) {
       ],
     },
     plugins: [
+      // <script>를 주입하여 `index.html` 파일을 생성한다.
       // Generates an `index.html` file with the <script> injected.
       new HtmlWebpackPlugin(
         Object.assign(
@@ -554,22 +596,32 @@ module.exports = function(webpackEnv) {
       isEnvProduction &&
         shouldInlineRuntimeChunk &&
         new InlineChunkHtmlPlugin(HtmlWebpackPlugin, [/runtime~.+[.]js/]),
+      // 일부 환경 변수를 index.html에서 사용할 수 있도록 설정
+      // public URL은 index.html에서 %PUBLIC_URL% 로 사용할 수 있다.
       // Makes some environment variables available in index.html.
       // The public URL is available as %PUBLIC_URL% in index.html, e.g.:
       // <link rel="shortcut icon" href="%PUBLIC_URL%/favicon.ico">
+      // production 모드에서는 "hompage"를 지정하지 않으면 빈문자열이다.
+      // in `package.json`, 이 경우 해당 URL의 경로 이름이 된다.
+      // development 모드에서는 빈문자열이다.
       // In production, it will be an empty string unless you specify "homepage"
       // in `package.json`, in which case it will be the pathname of that URL.
       // In development, this will be an empty string.
       new InterpolateHtmlPlugin(HtmlWebpackPlugin, env.raw),
+      // 모듈에서 찾을 수 없는 오류를 몇 가지 필요한 컨텍스트를 제공한다.
       // This gives some necessary context to module not found errors, such as
       // the requesting resource.
       new ModuleNotFoundPlugin(paths.appPath),
+      // 일부 환경 변수를 JS 코드에 사용할 수 있도록 설정
       // Makes some environment variables available to the JS code, for example:
       // if (process.env.NODE_ENV === 'production') { ... }. See `./env.js`.
+      // build할 때 NODE_ENV가 production 모드로 설정되어있어야 하는 것은 절대적으로 중요하다.
+      // 그렇지 않으면 리액트는 매우 느린 개발 모드로 컴파일될 것이다.
       // It is absolutely essential that NODE_ENV is set to production
       // during a production build.
       // Otherwise React will be compiled in the very slow development mode.
       new webpack.DefinePlugin(env.stringified),
+      // hot updates를 실행하기 위함 (currently CSS only):
       // This is necessary to emit hot updates (currently CSS only):
       isEnvDevelopment && new webpack.HotModuleReplacementPlugin(),
       // Watcher doesn't work well if you mistype casing in a path so we use
@@ -589,6 +641,8 @@ module.exports = function(webpackEnv) {
           filename: 'static/css/[name].[contenthash:8].css',
           chunkFilename: 'static/css/[name].[contenthash:8].chunk.css',
         }),
+      // output 파일과 일치하는 모든 자원파일이름이 매핑된 manifest file 생성
+      // 'index.html'을 파싱하지 않고 찾을 수 있다.
       // Generate a manifest file which contains a mapping of all asset filenames
       // to their corresponding output file so that tools can pick it up without
       // having to parse `index.html`.
@@ -606,10 +660,13 @@ module.exports = function(webpackEnv) {
           };
         },
       }),
+      // Moment.js는 Webpack이 코드를 해석하는 방식 때문에 기본적으로 큰 locale 파일을 번들로 묶는 라이브러리다.
+      // 이는 사용자가 특정 locale을 선택하도록 요구하는 실용적인 해결책이다.
       // Moment.js is an extremely popular library that bundles large locale files
       // by default due to how Webpack interprets its code. This is a practical
       // solution that requires the user to opt into importing specific locales.
       // https://github.com/jmblog/how-to-optimize-momentjs-with-webpack
+      // Moment.js를 사용하지 않으면 지울것:
       // You can remove this if you don't use Moment.js:
       new webpack.IgnorePlugin(/^\.\/locale$/, /moment$/),
       // Generate a service worker script that will precache, and keep up to date,
@@ -657,6 +714,8 @@ module.exports = function(webpackEnv) {
           formatter: isEnvProduction ? typescriptFormatter : undefined,
         }),
     ].filter(Boolean),
+    // 일부 라이브러리는 노드 모듈을 가져오지만 브라우저에서는 사용하지 않는다.
+    // 웹 팩에 empty mocks을 제공하도록 하여 가져오기 작업이 제대로 수행되도록 하십시오.
     // Some libraries import Node modules but don't use them in the browser.
     // Tell Webpack to provide empty mocks for them so importing them works.
     node: {
@@ -669,6 +728,7 @@ module.exports = function(webpackEnv) {
       tls: 'empty',
       child_process: 'empty',
     },
+    // FileSizeReporter를 통해 자체 hints를 활용하므로 성능 처리를 끈다.
     // Turn off performance processing because we utilize
     // our own hints via the FileSizeReporter
     performance: false,

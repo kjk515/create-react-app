@@ -1,0 +1,18 @@
+{
+  "name": "eslint-config-nara",
+  "version": "0.0.1-alpha",
+  "description": "ESLint configuration for NARA",
+  "license": "UNLICENSED",
+  "engines": {
+    "node": ">=8.10"
+  },
+  "files": [
+    "rules"
+  ],
+  "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/kjk515/create-react-app.git",
+    "directory": "packages/eslint-config-nara"
+  }
+}

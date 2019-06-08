@@ -1,10 +1,10 @@
 {
-  "name": "react-scripts",
-  "version": "3.0.1",
-  "description": "Configuration and scripts for Create React App.",
+  "name": "react-nara-scripts",
+  "version": "0.0.1-beta",
+  "description": "Configuration and scripts for Create Nara Drama.",
   "repository": {
     "type": "git",
-    "url": "https://github.com/facebook/create-react-app.git",
+    "url": "https://github.com/kjk515/create-react-app.git",
     "directory": "packages/react-scripts"
   },
   "license": "MIT",
@@ -12,7 +12,7 @@
     "node": ">=8.10"
   },
   "bugs": {
-    "url": "https://github.com/facebook/create-react-app/issues"
+    "url": "https://github.com/kjk515/create-react-app/issues"
   },
   "files": [
     "bin",
@@ -85,6 +85,7 @@
     "react": "^16.8.4",
     "react-dom": "^16.8.4"
   },
+
   "optionalDependencies": {
     "fsevents": "2.0.7"
   },

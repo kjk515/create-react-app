@@ -12,13 +12,18 @@ const path = require('path');
 const fs = require('fs');
 const url = require('url');
 
+// 프로젝트 폴더의 심볼 링크가 모두 해결되었는지 확인하십시오:
 // Make sure any symlinks in the project folder are resolved:
 // https://github.com/facebook/create-react-app/issues/637
 const appDirectory = fs.realpathSync(process.cwd());
+// 절대경로+상대경로 병합
 const resolveApp = relativePath => path.resolve(appDirectory, relativePath);
 
 const envPublicUrl = process.env.PUBLIC_URL;
 
+/**
+ * 경로 끝에 /를 붙이거나 빼는 함수
+ */
 function ensureSlash(inputPath, needsSlash) {
   const hasSlash = inputPath.endsWith('/');
   if (hasSlash && !needsSlash) {
@@ -33,6 +38,10 @@ function ensureSlash(inputPath, needsSlash) {
 const getPublicUrl = appPackageJson =>
   envPublicUrl || require(appPackageJson).homepage;
 
+// "PUBLIC_URL" 환경변수나 "hompage" 필드를 이용해 앱이 제공되는 "public path"를 추론한다.
+// 웹팩은 /todos/42와 같은 중첩 URL에 대해 index.html을 제공할 수 있는 단일 페이지 앱에서도 올바른 href를 HTML에 넣기 위해 이를 알아야 한다.
+// /todos/42/static/js/bundle.7289d.js와 같은 것을 로드하고 싶지 않기 때문에 HTML에서는 상대 경로를 사용할 수 없다.
+// 우리는 root를 알아야 한다.
 // We use `PUBLIC_URL` environment variable or "homepage" field to infer
 // "public path" at which the app is served.
 // Webpack needs to know it to put the right <script> hrefs into HTML even in
@@ -60,6 +69,7 @@ const moduleFileExtensions = [
   'jsx',
 ];
 
+// 확장자와 같이 병합
 // Resolve file paths in the same order as webpack
 const resolveModule = (resolveFn, filePath) => {
   const extension = moduleFileExtensions.find(extension =>

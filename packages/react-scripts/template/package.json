@@ -1,0 +1,24 @@
+{
+  "name": "sample-drama",
+  "version": "0.1.0",
+  "private": true,
+  "dependencies": {
+    "@nara.platform/station": "0.0.1",
+    "react-nara-scripts": "0.0.1-beta",
+    "react": "^16.8.6",
+    "react-dom": "^16.8.6"
+  },
+  "devDependencies": {
+    "eslint-config-nara": "0.0.1-alpha"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "build_app": "react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject"
+  },
+  "proxy": "http://localhost:8080",
+  "eslintConfig": {
+    "extends": "eslint-config-nara"
+  }
+}

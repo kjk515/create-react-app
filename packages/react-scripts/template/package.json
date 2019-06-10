@@ -4,7 +4,7 @@
   "private": true,
   "dependencies": {
     "@nara.platform/station": "0.0.1",
-    "react-nara-scripts": "0.0.1-beta",
+    "react-nara-scripts": "0.0.1-beta5",
     "react": "^16.8.6",
     "react-dom": "^16.8.6"
   },
@@ -20,5 +20,17 @@
   "proxy": "http://localhost:8080",
   "eslintConfig": {
     "extends": "eslint-config-nara"
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
   }
 }

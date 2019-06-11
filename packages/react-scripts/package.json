@@ -1,6 +1,6 @@
 {
   "name": "@nara.drama/react-scripts",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "Configuration and scripts for Create Nara Drama.",
   "repository": {
     "type": "git",
@@ -31,6 +31,7 @@
     "@babel/core": "7.4.3",
     "@babel/plugin-proposal-class-properties": "^7.4.4",
     "@babel/plugin-proposal-decorators": "^7.4.4",
+    "@babel/plugin-transform-react-jsx": "^7.3.0",
     "@svgr/webpack": "4.2.0",
     "@typescript-eslint/eslint-plugin": "1.6.0",
     "@typescript-eslint/parser": "1.6.0",

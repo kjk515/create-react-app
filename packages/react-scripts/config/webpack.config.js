@@ -418,9 +418,14 @@ module.exports = function(webpackEnv) {
                       },
                     },
                   ],
-                  [require.resolve('@babel/plugin-proposal-decorators'), { "legacy": true }], // NARA: decorator 사용
-                  [require.resolve('@babel/plugin-proposal-class-properties'), { "loose": true }], // NARA: class static 속성 사용
-                  'react-docgen', // NARA: 컴포넌트 문서 생성
+                  [
+                    require.resolve('@babel/plugin-proposal-decorators'),
+                    { legacy: true },
+                  ], // NARA: decorator 사용
+                  [
+                    require.resolve('@babel/plugin-proposal-class-properties'),
+                    { loose: true },
+                  ], // NARA: class static 속성 사용
                 ],
                 // 웹팩용 바벨로더의 기능(not Babel itself).
                 // ./node_modules/.cache/babel-loader/ 디렉토리의 캐싱결과를 활성화하여 재구축 시간을 단축한다.

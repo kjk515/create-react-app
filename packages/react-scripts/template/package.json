@@ -4,9 +4,10 @@
   "private": true,
   "dependencies": {
     "@nara.platform/station": "0.0.1",
-    "@nara.drama/react-scripts": "0.0.5",
+    "@nara.drama/react-scripts": "0.0.6",
     "react": "^16.8.6",
-    "react-dom": "^16.8.6"
+    "react-dom": "^16.8.6",
+    "react-router-dom": "^5.0.1"
   },
   "devDependencies": {
     "eslint-config-nara": "0.0.1-alpha"

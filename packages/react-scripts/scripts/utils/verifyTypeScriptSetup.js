@@ -103,8 +103,10 @@ function verifyTypeScriptSetup() {
     allowJs: { suggested: true },
     skipLibCheck: { suggested: true },
     esModuleInterop: { suggested: true },
+    experimentalDecorators: { suggested: true }, // NARA decorator 사용
     allowSyntheticDefaultImports: { suggested: true },
     strict: { suggested: true },
+    noImplicitAny: { suggested: false }, // NARA snap 사용(TODO: any타입으로 들어오지 않게 snap을 만들어야함)
     forceConsistentCasingInFileNames: { suggested: true },
     // TODO: Enable for v4.0 (#6936)
     // noFallthroughCasesInSwitch: { suggested: true },

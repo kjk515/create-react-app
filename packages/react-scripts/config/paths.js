@@ -101,8 +101,9 @@ module.exports = {
   appNodeModules: resolveApp('node_modules'),
   publicUrl: getPublicUrl(resolveApp('package.json')),
   servedPath: getServedPath(resolveApp('package.json')),
-  libBuild: resolveApp('lib'),
-  libIndexJs: resolveModule(resolveApp, 'src/snap/index'),
+  libBuild: resolveApp('lib'), // NARA
+  libIndexJs: resolveModule(resolveApp, process.env.LIB_INDEX), // NARA
+  proxyProperties: resolveApp('config/proxy.js'), // NARA
 };
 
 // @remove-on-eject-begin
@@ -126,8 +127,9 @@ module.exports = {
   appNodeModules: resolveApp('node_modules'),
   publicUrl: getPublicUrl(resolveApp('package.json')),
   servedPath: getServedPath(resolveApp('package.json')),
-  libBuild: resolveApp('lib'),
-  libIndexJs: resolveModule(resolveApp, 'src/snap/index'),
+  libBuild: resolveApp('lib'), // NARA
+  libIndexJs: resolveModule(resolveApp, process.env.LIB_INDEX), // NARA
+  proxyProperties: resolveApp('config/proxy.js'), // NARA
   // These properties only exist before ejecting:
   ownPath: resolveOwn('.'),
   ownNodeModules: resolveOwn('node_modules'), // This is empty on npm 3

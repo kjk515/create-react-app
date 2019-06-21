@@ -1,7 +1,7 @@
 const proxy = {
-  '/api/depot': {
+  '/api/sample': {
     target: 'http://localhost:8080',
-    pathRewrite: { '/api/depot': '/' },
+    pathRewrite: { '/api/sample': '/' },
   },
 };
 

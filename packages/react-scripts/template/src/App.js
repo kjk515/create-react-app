@@ -1,23 +1,17 @@
 import React from 'react';
-import './App.css';
+
+import './style/css/main.css';
+
+import Store from './Store';
+import Routes from './Routes';
+
+// import { PublicServantLayout } from '@nara.platform/station';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Store>
+      <Routes />
+    </Store>
   );
 }
 

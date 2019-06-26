@@ -17,10 +17,10 @@ class PostListContainer extends React.Component {
   findPosts(page) {
     const { postService, sharedService } = this.props;
 
-    if (!page) {
-      sharedService.setPageMap('post', 0, 15);
-    } else {
+    if (page) {
       sharedService.setPage('post', page);
+    } else {
+      sharedService.setPageMap('post', 0, 15);
     }
 
     postService.findPosts(sharedService.pageMap.get('post'));

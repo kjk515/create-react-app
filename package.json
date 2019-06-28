@@ -37,19 +37,5 @@
     "svg-term-cli": "^2.1.1",
     "tempy": "^0.2.1",
     "wait-for-localhost": "^3.1.0"
-  },
-  "husky": {
-    "hooks": {
-      "pre-commit": "lint-staged"
-    }
-  },
-  "lint-staged": {
-    "*.{js,md,css,html}": [
-      "prettier --trailing-comma es5 --single-quote --write",
-      "git add"
-    ],
-    "yarn.lock": [
-      "git rm --cached"
-    ]
   }
 }

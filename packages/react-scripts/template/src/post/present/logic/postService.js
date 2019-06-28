@@ -20,7 +20,7 @@ class PostService {
 
   async countPosts() {
     const posts = await postApi.countPosts();
-    // json-server don't provider total count route. returned total all Posts.
+    // json-server doesn't provider total count route. returned total all Posts.
     return posts.length;
   }
 

@@ -6,7 +6,7 @@ import { Link } from 'react-router-dom';
 import PostViewModel from '../model/PostViewModel';
 
 interface Props {
-  post: PostViewModel | null
+  post: PostViewModel
   onDelete: () => void
 }
 
@@ -27,7 +27,7 @@ class PostView extends React.Component<Props> {
               <label>Title</label>
               <Form.Input
                 width={16}
-                value={post? post.title : ''}
+                value={post.title || ''}
                 readOnly
               />
             </Form.Group>
@@ -37,7 +37,7 @@ class PostView extends React.Component<Props> {
               <Form.Field width={16}>
                 <TextArea
                   rows={20}
-                  value={post? post.contents : ''}
+                  value={post.contents || ''}
                   readOnly
                 />
               </Form.Field>

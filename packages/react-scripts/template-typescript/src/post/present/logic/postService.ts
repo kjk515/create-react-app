@@ -10,7 +10,7 @@ export class PostService {
   posts: PostViewModel[] = [];
 
   @observable
-  post: PostViewModel | null = null;
+  post: PostViewModel = {} as PostViewModel;
 
   @boundMethod
   @action
@@ -22,7 +22,7 @@ export class PostService {
 
   async countPosts() {
     const posts = await postApi.countPosts();
-    // json-server doesn't provider total count route. returned total all Posts.
+    // json-server don't provider total count route. returned total all Posts.
     return posts.length;
   }
 
@@ -44,6 +44,12 @@ export class PostService {
 
   removePost(postId) {
     return postApi.removePost(postId);
+  }
+
+  @boundMethod
+  @action
+  initPost() {
+    this.post = {} as PostViewModel;
   }
 
 }

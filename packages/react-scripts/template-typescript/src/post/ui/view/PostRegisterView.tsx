@@ -6,7 +6,7 @@ import PostViewModel from '../model/PostViewModel';
 
 interface Props {
   open: boolean
-  post: PostViewModel | null
+  post: PostViewModel
   onClose: () => void
   onRegister: () => void
   onChangePostProp: (prop: string, value: string) => void
@@ -44,7 +44,7 @@ class PostRegisterView extends React.Component<Props> {
                 <label>Title</label>
                 <Form.Input
                   width={16}
-                  value={post? post.title : ''}
+                  value={post.title || ''}
                   onChange={(e, data) => onChangePostProp('title', data.value)}
                 />
               </Form.Group>
@@ -54,7 +54,7 @@ class PostRegisterView extends React.Component<Props> {
                 <Form.Field width={16}>
                   <TextArea
                     rows={20}
-                    value={post? post.contents : ''}
+                    value={post.contents || ''}
                     onChange={(e, data) => onChangePostProp('contents', data.value as string)}
                   />
                 </Form.Field>

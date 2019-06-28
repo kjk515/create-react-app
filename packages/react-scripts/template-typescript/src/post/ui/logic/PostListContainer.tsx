@@ -44,7 +44,7 @@ class PostListContainer extends React.Component<Props> {
     post.date = new Date().toISOString().slice(0, 10);
 
     postService.registerPost(post).then(() => {
-      postService.post = null;
+      postService.initPost();
       this.findPosts();
       sharedService.changeModal('postRegister', false);
     });

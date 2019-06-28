@@ -5,7 +5,7 @@ import { PostViewModel } from '../../post';
 
 interface Props {
   open: boolean
-  post: PostViewModel | null
+  post: PostViewModel
   onClose: () => void
 }
 
@@ -39,7 +39,7 @@ class PostView extends React.Component<Props> {
                 <label>Title</label>
                 <Form.Input
                   width={16}
-                  value={post? post.title : ''}
+                  value={post.title || ''}
                   readOnly
                 />
               </Form.Group>
@@ -49,7 +49,7 @@ class PostView extends React.Component<Props> {
                 <Form.Field width={16}>
                   <TextArea
                     rows={20}
-                    value={post? post.contents : ''}
+                    value={post.contents || ''}
                     readOnly
                   />
                 </Form.Field>

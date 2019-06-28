@@ -9,6 +9,7 @@ import post from '../post';
 @inject('postService', 'sharedService')
 @observer
 class PostModal extends React.Component {
+
   componentDidMount() {
     post._containerMounted();
     post._setAction('handleOpen', this.handleOpen);

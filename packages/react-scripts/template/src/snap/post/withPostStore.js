@@ -9,7 +9,7 @@ const withPostStore = Component => {
     render() {
       return (
         <Provider sharedService={sharedService} postService={postService}>
-          <Component />
+          <Component {...this.props} />
         </Provider>
       );
     }

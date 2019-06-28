@@ -1,4 +1,5 @@
 export default class PostViewModel {
+
   id;
   title;
   contents;

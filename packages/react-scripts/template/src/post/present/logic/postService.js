@@ -4,6 +4,7 @@ import { boundMethod } from 'autobind-decorator';
 import postApi from '../apiclient/postApi';
 
 class PostService {
+
   @observable
   posts = [];
 

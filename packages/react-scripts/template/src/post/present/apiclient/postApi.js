@@ -12,8 +12,7 @@ class PostApi {
   }
 
   countPosts() {
-    return axios
-      .get(this.rootURL + '/posts/count')
+    return axios.get(this.rootURL + '/posts/count')
       .then(response => response.data);
   }
 
@@ -22,8 +21,7 @@ class PostApi {
   }
 
   findPost(postId) {
-    return axios
-      .get(this.rootURL + `/posts/${postId}`)
+    return axios.get(this.rootURL + `/posts/${postId}`)
       .then(response => new PostViewModel(response.data));
   }
 

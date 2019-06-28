@@ -8,6 +8,7 @@ import PostView from '../view/PostView';
 @inject('postService')
 @observer
 class PostContainer extends React.Component {
+
   componentDidMount() {
     this.findPost();
   }
@@ -25,8 +26,7 @@ class PostContainer extends React.Component {
   @boundMethod
   handleRemove() {
     const { id } = this.props.match.params;
-    this.props.postService
-      .removePost(id)
+    this.props.postService.removePost(id)
       .then(() => this.props.history.push('/posts'));
   }
 

@@ -4,6 +4,7 @@ import { boundMethod } from 'autobind-decorator';
 import PageModel from '../model/PageModel';
 
 class SharedService {
+
   @observable
   modalMap = new Map();
 

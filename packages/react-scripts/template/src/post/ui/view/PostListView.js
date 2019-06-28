@@ -39,10 +39,10 @@ class PostListView extends React.Component {
                   {posts.map(post => (
                     <Table.Row key={post.id}>
                       <Table.Cell>
-                        <Link to={`/posts/${post.id}`}>{post.title}</Link>
+                        <Link to={`/posts/${post.id}`}>{post.title || ''}</Link>
                       </Table.Cell>
-                      <Table.Cell>{post.contents}</Table.Cell>
-                      <Table.Cell>{post.date}</Table.Cell>
+                      <Table.Cell>{post.contents || ''}</Table.Cell>
+                      <Table.Cell>{post.date || ''}</Table.Cell>
                     </Table.Row>
                   ))}
                 </Table.Body>

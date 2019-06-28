@@ -9,6 +9,7 @@ import PostRegisterView from '../view/PostRegisterView';
 @inject('sharedService', 'postService')
 @observer
 class PostListContainer extends React.Component {
+
   componentDidMount() {
     this.findPosts();
   }
@@ -24,8 +25,7 @@ class PostListContainer extends React.Component {
     }
 
     postService.findPosts(sharedService.pageMap.get('post'));
-    postService
-      .countPosts()
+    postService.countPosts()
       .then(count => sharedService.setCount('post', count));
   }
 
@@ -37,9 +37,9 @@ class PostListContainer extends React.Component {
     post.date = new Date().toISOString().slice(0, 10);
 
     postService.registerPost(post).then(() => {
-      postService.initPost();
       this.findPosts();
       sharedService.changeModal('postRegister', false);
+      postService.initPost();
     });
   }
 

@@ -1,4 +1,5 @@
 export default class PostApiModel {
+
   id;
   title;
   contents;

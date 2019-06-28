@@ -1,4 +1,5 @@
 export default class PageModel {
+
   offset;
   limit;
   count;

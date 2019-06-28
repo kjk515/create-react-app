@@ -18,13 +18,17 @@ nara-react-scripts 는 위의 이슈를 해결하기 위해
 
 ### 명령어
 
+For JavaScript
+
 ```cfml
   npx create-react-app my-app --scripts-version nara-react-scripts
 ```
 
-#### Todo
+For TypeScript
 
-타입스크립트 버전은 tslint 설정 구성 후 추가 제공할 예정입니다.<br><br>
+```cfml
+  npx create-react-app my-app --scripts-version nara-react-scripts --typescript
+```
 
 #### create react app 참고
 

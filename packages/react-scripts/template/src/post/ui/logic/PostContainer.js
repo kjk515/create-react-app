@@ -13,7 +13,7 @@ class PostContainer extends React.Component {
   }
 
   componentWillUnmount() {
-    this.props.postService.post = {};
+    this.props.postService.initPost();
   }
 
   @boundMethod

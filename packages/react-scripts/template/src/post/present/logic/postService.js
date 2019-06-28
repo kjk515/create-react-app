@@ -43,6 +43,12 @@ class PostService {
   removePost(postId) {
     return postApi.removePost(postId);
   }
+
+  @boundMethod
+  @action
+  initPost() {
+    this.post = {};
+  }
 }
 
 export default new PostService();

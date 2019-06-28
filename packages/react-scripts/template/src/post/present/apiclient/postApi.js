@@ -7,8 +7,7 @@ class PostApi {
   rootURL = process.env.REACT_APP_API_URL;
 
   findPosts(offset, limit) {
-    return axios
-      .get(this.rootURL + '/posts', { params: { offset, limit } })
+    return axios.get(this.rootURL + '/posts', { params: { offset, limit }})
       .then(response => response.data.map(post => new PostViewModel(post)));
   }
 

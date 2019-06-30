@@ -3,6 +3,7 @@ import { boundMethod } from 'autobind-decorator';
 
 import postApi from '../apiclient/postApi';
 import PostViewModel from '../../ui/model/PostViewModel';
+import { PageModel } from '../../../shared';
 
 export class PostService {
 
@@ -14,7 +15,7 @@ export class PostService {
 
   @boundMethod
   @action
-  async findPosts(pageSet) {
+  async findPosts(pageSet: PageModel) {
     if (!pageSet) return;
 
     this.posts = await postApi.findPosts(pageSet.offset, pageSet.limit);
@@ -28,7 +29,7 @@ export class PostService {
 
   @boundMethod
   @action
-  changePostProp(prop, value) {
+  changePostProp(prop: string, value: string) {
     this.post = { ...this.post, [prop]: value } as PostViewModel;
   }
 
@@ -39,11 +40,11 @@ export class PostService {
 
   @boundMethod
   @action
-  async findPost(postId) {
+  async findPost(postId: string) {
     this.post = await postApi.findPost(postId);
   }
 
-  removePost(postId) {
+  removePost(postId: string) {
     return postApi.removePost(postId);
   }
 

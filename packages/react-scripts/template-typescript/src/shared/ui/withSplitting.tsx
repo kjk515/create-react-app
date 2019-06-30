@@ -4,11 +4,11 @@ interface State {
   component: ComponentType | null
 }
 
-const withSplitting = (getComponent) => {
+const withSplitting = (getComponent: Function) => {
 
   class WithSplitting extends React.Component<{}, State> {
 
-    constructor(props) {
+    constructor(props: any) {
       super(props);
 
       this.state = {
@@ -17,7 +17,9 @@ const withSplitting = (getComponent) => {
     }
 
     componentDidMount() {
-      getComponent().then(({ default: component }) => this.setState({ component }));
+      getComponent().then((component: any) => {
+        this.setState({ component: component.default });
+      });
     }
 
     render() {

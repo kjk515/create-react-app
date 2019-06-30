@@ -1,12 +1,12 @@
 
 export default class PageModel {
-  offset;
-  limit;
-  count;
-  page;
-  totalPages;
+  offset: number;
+  limit: number;
+  count: number;
+  page: number;
+  totalPages: number;
 
-  constructor(offset, limit) {
+  constructor(offset: number, limit: number) {
     this.offset = offset;
     this.limit = limit;
     this.count = 0;

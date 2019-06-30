@@ -7,9 +7,9 @@ class PostApi {
 
   rootURL = process.env.REACT_APP_API_URL;
 
-  findPosts(offset, limit) {
+  findPosts(offset: number, limit: number) {
     return axios.get(this.rootURL + '/posts', { params: { offset, limit }})
-      .then((response) => response.data.map(post => new PostViewModel(post)));
+      .then((response) => response.data.map((post: PostApiModel) => new PostViewModel(post)));
   }
 
   countPosts() {
@@ -17,16 +17,16 @@ class PostApi {
       .then((response) => response.data);
   }
 
-  registerPost(post) {
+  registerPost(post: PostViewModel) {
     return axios.post(this.rootURL + '/posts', new PostApiModel(post));
   }
 
-  findPost(postId) {
+  findPost(postId: string) {
     return axios.get(this.rootURL + `/posts/${postId}`)
       .then((response) => new PostViewModel(response.data));
   }
 
-  removePost(postId) {
+  removePost(postId: string) {
     return axios.delete(this.rootURL + `/posts/${postId}`);
   }
 }

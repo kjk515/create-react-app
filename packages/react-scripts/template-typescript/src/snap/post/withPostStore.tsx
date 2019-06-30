@@ -4,7 +4,7 @@ import { Provider } from 'mobx-react';
 import { sharedService } from '../../shared';
 import { postService } from '../../post';
 
-const withPostStore = (Component) => {
+const withPostStore = (Component: any) => {
   class PostStore extends React.PureComponent {
     render() {
       return (

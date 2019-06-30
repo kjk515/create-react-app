@@ -4,7 +4,7 @@ import { Provider } from 'mobx-react';
 import { sharedService } from './shared';
 import { postService } from './post';
 
-function Store({ children }) {
+function Store({ children }: any) {
   return (
     <Provider
       sharedService={sharedService}

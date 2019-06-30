@@ -5,7 +5,7 @@ interface ActionHandler {
   actionMap: Map<string, Function>
   setAction: (actionType: string, callback: Function) => void
   containerMounted: () => void
-  dispatchAction: (actionType: string, any) => void
+  dispatchAction: (actionType: string, args: any) => void
 }
 
 const actionHandler: ActionHandler = {

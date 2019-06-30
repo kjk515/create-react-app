@@ -219,6 +219,7 @@ module.exports = function(
     cdpath = appPath;
   }
 
+  // NARA
   // Change displayed command to yarn instead of yarnpkg
   const displayedCommand = useYarn ? 'yarn' : 'npm';
 
@@ -230,32 +231,24 @@ module.exports = function(
   console.log('    Starts the development server.');
   console.log();
   console.log(
-    chalk.cyan(`  ${displayedCommand} ${useYarn ? '' : 'run '}build`)
+    chalk.cyan(`  ${displayedCommand} ${useYarn ? '' : 'run '}build_app`)
   );
   console.log('    Bundles the app into static files for production.');
   console.log();
-  console.log(chalk.cyan(`  ${displayedCommand} test`));
-  console.log('    Starts the test runner.');
-  console.log();
   console.log(
-    chalk.cyan(`  ${displayedCommand} ${useYarn ? '' : 'run '}eject`)
+    chalk.cyan(`  ${displayedCommand} ${useYarn ? '' : 'run '}build_lib`)
   );
-  console.log(
-    '    Removes this tool and copies build dependencies, configuration files'
-  );
-  console.log(
-    '    and scripts into the app directory. If you do this, you can’t go back!'
-  );
+  console.log('    Bundles your snap.');
   console.log();
   console.log('We suggest that you begin by typing:');
   console.log();
   console.log(chalk.cyan('  cd'), cdpath);
-  console.log(`  ${chalk.cyan(`${displayedCommand} install`)}`); // NARA
+  console.log(`  ${chalk.cyan(`${displayedCommand} install`)}`);
   console.log(
     `  ${chalk.cyan(
       `${displayedCommand} start | ${displayedCommand} json_server`
     )}`
-  ); // NARA
+  );
   if (readmeExists) {
     console.log();
     console.log(
@@ -265,7 +258,7 @@ module.exports = function(
     );
   }
   console.log();
-  console.log('Happy hacking!');
+  console.log('Happy Developing Nara Drama!');
 };
 
 function isReactInstalled(appPackage) {

@@ -1,11 +1,13 @@
 
-export default class PostApiModel {
-  id;
-  title;
-  contents;
-  date;
+import PostViewModel from '../../ui/model/PostViewModel';
 
-  constructor(postViewModel) {
+export default class PostApiModel {
+  id: string|undefined;
+  title: string|undefined;
+  contents: string|undefined;
+  date: string|undefined;
+
+  constructor(postViewModel: PostViewModel) {
     Object.assign(this, postViewModel);
   }
 }

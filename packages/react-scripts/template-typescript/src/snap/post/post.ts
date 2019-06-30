@@ -2,7 +2,7 @@
 import { actionHandler } from '../../shared';
 
 const post = {
-  showPost: (postId) => {
+  showPost: (postId: string) => {
     actionHandler.dispatchAction('handleOpen', postId);
   },
 };

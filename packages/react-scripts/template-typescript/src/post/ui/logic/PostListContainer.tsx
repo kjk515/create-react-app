@@ -22,7 +22,7 @@ class PostListContainer extends React.Component<Props> {
   }
 
   @boundMethod
-  findPosts(page?) {
+  findPosts(page?: number) {
     const { postService, sharedService } = this.props;
 
     if (page) {

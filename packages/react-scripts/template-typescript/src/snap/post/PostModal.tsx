@@ -22,12 +22,12 @@ class PostModal extends React.Component<Props> {
   }
 
   @boundMethod
-  findPost(id) {
+  findPost(id: string) {
     this.props.postService.findPost(id);
   }
 
   @boundMethod
-  handleOpen(id) {
+  handleOpen(id: string) {
     this.props.sharedService.changeModal('postSnap', true);
     this.findPost(id);
   }

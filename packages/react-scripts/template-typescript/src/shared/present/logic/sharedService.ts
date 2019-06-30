@@ -13,20 +13,20 @@ export class SharedService {
 
   @boundMethod
   @action
-  changeModal(key, value) {
+  changeModal(key: string, value: boolean) {
     this.modalMap.set(key, value);
   }
 
   @boundMethod
   @action
-  setPageMap(key, offset, limit) {
+  setPageMap(key: string, offset: number, limit: number) {
 
     this.pageMap.set(key, new PageModel(offset, limit));
   }
 
   @boundMethod
   @action
-  initPageMap(key) {
+  initPageMap(key: string) {
     if (Array.isArray(key)) {
       key.forEach(mapKey => this.pageMap.delete(mapKey));
     } else {
@@ -36,7 +36,7 @@ export class SharedService {
 
   @boundMethod
   @action
-  initModalMap(key) {
+  initModalMap(key: string) {
     if (Array.isArray(key)) {
       key.forEach(mapKey => this.modalMap.delete(mapKey));
     } else {
@@ -46,7 +46,7 @@ export class SharedService {
 
   @boundMethod
   @action
-  setCount(key, count) {
+  setCount(key: string, count: number) {
     const pageSet = { ...this.pageMap.get(key) };
     if (!pageSet) {
       return;
@@ -60,7 +60,7 @@ export class SharedService {
 
   @boundMethod
   @action
-  setPage(key, page) {
+  setPage(key: string, page: number) {
     const pageSet = { ...this.pageMap.get(key) };
     if (!pageSet) {
       return;

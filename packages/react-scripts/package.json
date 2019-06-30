@@ -1,6 +1,6 @@
 {
-  "name": "react-nara-scripts",
-  "version": "0.0.9",
+  "name": "nara-react-scripts",
+  "version": "0.1.4",
   "description": "Configuration and scripts for Create Nara Drama.",
   "repository": {
     "type": "git",

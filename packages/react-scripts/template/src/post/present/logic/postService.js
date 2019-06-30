@@ -31,8 +31,9 @@ class PostService {
     this.post = { ...this.post, [prop]: value };
   }
 
-  registerPost(post) {
-    return postApi.registerPost(post);
+  registerPost() {
+    this.post.date = new Date().toISOString().slice(0, 10);
+    return postApi.registerPost(this.post);
   }
 
   @boundMethod

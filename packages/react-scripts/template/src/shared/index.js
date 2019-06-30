@@ -1,5 +1,5 @@
 import withSplitting from './ui/withSplitting';
-import sharedService from './logic/sharedService';
+import sharedService from './present/logic/sharedService';
 
 export {
   withSplitting,

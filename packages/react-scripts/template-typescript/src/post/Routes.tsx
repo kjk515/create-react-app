@@ -1,5 +1,5 @@
 import React from 'react';
-import {Route, RouteComponentProps} from 'react-router-dom';
+import { Route, RouteComponentProps } from 'react-router-dom';
 
 import { PostListContainer, PostContainer } from './index';
 

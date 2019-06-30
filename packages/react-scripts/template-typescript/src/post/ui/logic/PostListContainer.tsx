@@ -6,8 +6,7 @@ import { boundMethod } from 'autobind-decorator';
 import PostListView from '../view/PostListView';
 import PostRegisterView from '../view/PostRegisterView';
 import { SharedService } from '../../../shared';
-import { PostService } from '../../present/logic/postService';
-import PostViewModel from '../model/PostViewModel';
+import { PostService } from '../..';
 
 interface Props {
   sharedService: SharedService
@@ -26,7 +25,7 @@ class PostListContainer extends React.Component<Props> {
   findPosts(page?) {
     const { postService, sharedService } = this.props;
 
-    if(page) {
+    if (page) {
       sharedService.setPage('post', page);
     } else {
       sharedService.setPageMap('post', 0, 15);
@@ -40,10 +39,7 @@ class PostListContainer extends React.Component<Props> {
   handleRegister() {
     const { postService, sharedService } = this.props;
 
-    const post = { ...postService.post } as PostViewModel;
-    post.date = new Date().toISOString().slice(0, 10);
-
-    postService.registerPost(post).then(() => {
+    postService.registerPost().then(() => {
       postService.initPost();
       this.findPosts();
       sharedService.changeModal('postRegister', false);

@@ -3,13 +3,24 @@
 # top-most EditorConfig file
 root = true
 
-# Unix-style newlines with a newline ending every file
+# Windows-style : crlf
 [*]
 end_of_line = lf
 insert_final_newline = true
 charset = utf-8
+trim_trailing_whitespace = true
 
 # Indentation override for all Java
-[*.{js, jsx, ts, tsx, json}]
+[*.{xml,java}]
+indent_style = space
+indent_size = 4
+
+# json, yml, web indentation
+[*.{json,yml,js,jsx,ts,tsx,html,css,sass,scss,less}]
+indent_style = space
+indent_size = 2
+
+# markdown
+[*.md]
 indent_style = space
 indent_size = 2

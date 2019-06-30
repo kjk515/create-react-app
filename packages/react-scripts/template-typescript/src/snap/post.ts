@@ -24,7 +24,7 @@ const post: Post = {
     post.actionQueue.forEach(({ actionType, args }) => {
 
       const action = post.actionMap.get(actionType);
-      if(action) {
+      if (action) {
         action(...args);
       }
 
@@ -34,7 +34,7 @@ const post: Post = {
   _dispatchAction: (actionType, ...args) => {
     if (post.isContainerMounted) {
       const action = post.actionMap.get(actionType);
-      if(action) {
+      if (action) {
         action(...args);
       }
     } else {

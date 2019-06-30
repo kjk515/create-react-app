@@ -1,6 +1,6 @@
 import withSplitting from './ui/withSplitting';
-import sharedService, { SharedService } from './logic/sharedService';
-import PageModel from './model/PageModel';
+import sharedService, { SharedService } from './present/logic/sharedService';
+import PageModel from './present/model/PageModel';
 
 export {
   withSplitting,

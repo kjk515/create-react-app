@@ -5,7 +5,7 @@ import { boundMethod } from 'autobind-decorator';
 import { RouteComponentProps, withRouter } from 'react-router-dom';
 
 import PostView from '../view/PostView';
-import { PostService } from '../../present/logic/postService';
+import { PostService } from '../..';
 
 interface Params {
   id: string

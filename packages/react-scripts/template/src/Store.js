@@ -6,7 +6,10 @@ import { postService } from './post';
 
 function Store({ children }) {
   return (
-    <Provider sharedService={sharedService} postService={postService}>
+    <Provider
+      sharedService={sharedService}
+      postService={postService}
+    >
       {children}
     </Provider>
   );

@@ -25,18 +25,14 @@ class PostListContainer extends React.Component {
     }
 
     postService.findPosts(sharedService.pageMap.get('post'));
-    postService.countPosts()
-      .then(count => sharedService.setCount('post', count));
+    postService.countPosts().then(count => sharedService.setCount('post', count));
   }
 
   @boundMethod
   handleRegister() {
     const { postService, sharedService } = this.props;
 
-    const post = { ...postService.post };
-    post.date = new Date().toISOString().slice(0, 10);
-
-    postService.registerPost(post).then(() => {
+    postService.registerPost().then(() => {
       this.findPosts();
       sharedService.changeModal('postRegister', false);
       postService.initPost();

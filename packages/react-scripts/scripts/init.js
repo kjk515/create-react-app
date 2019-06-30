@@ -93,21 +93,26 @@ module.exports = function(
 
   const useTypeScript = appPackage.dependencies['typescript'] != null;
 
-  // Setup the script rules
+  // Setup the script rules (NARA: scripts 변경)
   appPackage.scripts = {
     start: 'react-scripts start',
-    build: 'react-scripts build',
-    test: 'react-scripts test',
-    eject: 'react-scripts eject',
+    build_app: 'react-scripts build_app',
+    build_lib: 'react-scripts build_lib',
+    json_server: 'json-server --watch json-server/db.json --routes json-server/routes.json --port 8082'
   };
 
-  // Setup the eslint config
+  // NARA: main, files, proxy
+  appPackage.main = './lib/snap.js';
+  appPackage.files = [ 'lib' ];
+  appPackage.proxy = 'http://localhost:8082';
+
+  // Setup the eslint config (NARA: eslint config 변경)
   appPackage.eslintConfig = {
-    extends: 'react-app',
+    extends: 'eslint-config-nara',
   };
 
-  // Setup the browsers list
-  appPackage.browserslist = defaultBrowsers;
+  // Setup the browsers list (NARA: FIXME: 일단 주석처리..)
+  // appPackage.browserslist = defaultBrowsers;
 
   fs.writeFileSync(
     path.join(appPath, 'package.json'),

@@ -10,7 +10,7 @@ module.exports = {
       submit: true,
       reset: false,
     }],
-    
+
     // defaultProps를 권장 하지만 강제하지 않음
     'react/default-props-match-prop-types': ['off', { allowRequiredDefaults: false }],
 
@@ -37,14 +37,14 @@ module.exports = {
     'react/jsx-equals-spacing': ['off', 'never'],
 
     // jsx 확장자 미사용
-    'react/jsx-filename-extension': ['error', { extensions: ['.js'] }],
+    'react/jsx-filename-extension': ['error', { extensions: ['.js', '.jsx', '.tsx'] }],
 
     // JSX props 줄바꿈 스타일 강제하지 않음
     'react/jsx-first-prop-new-line': ['off', 'multiline-multiprop'],
 
     // JSX 라인에
     'react/jsx-max-props-per-line': ['error', { maximum: 1, when: 'multiline' }],
-    
+
     // Fragment 사용법에 대해 제한하지 않음
     'react/jsx-fragments': 'off',
 
@@ -53,7 +53,7 @@ module.exports = {
 
     // 라인에 단일 구문 사용을 권장하나 제한하지 않음
     'react/jsx-one-expression-per-line': ['off', { allow: 'single-child' }],
-    
+
     // FIXME: Erorr로 할지 Warn으로 할지
     'react/jsx-tag-spacing': ['warn', {
       closingSlash: 'never',
@@ -61,7 +61,7 @@ module.exports = {
       afterOpening: 'never',
       beforeClosing: 'never',
     }],
-    
+
     // FIXME: Erorr로 할지 Warn으로 할지
     'react/jsx-uses-vars': 'warn',
 
@@ -87,7 +87,7 @@ module.exports = {
 
     // 함수형, 클래스형 둘다 사용
     'react/prefer-stateless-function': ['off', { ignorePureComponents: true }],
-    
+
     // prop types를 권장하지만 강제하지 않음
     'react/prop-types': ['off', {
       ignore: ['match', 'location', 'history', 'children'],
@@ -147,7 +147,7 @@ module.exports = {
       },
     }],
 
-    // propTypes에서 required는 처음에, 콜백(on~)은 마지막에 정의하도록 순서 제한 
+    // propTypes에서 required는 처음에, 콜백(on~)은 마지막에 정의하도록 순서 제한
     'react/sort-prop-types': ['error', {
       ignoreCase: true,
       callbacksLast: true,

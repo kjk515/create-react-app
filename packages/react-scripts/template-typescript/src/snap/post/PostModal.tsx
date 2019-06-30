@@ -4,8 +4,7 @@ import { observer, inject } from 'mobx-react';
 
 import PostView from './PostView';
 import withPostStore from './withPostStore';
-import post from '../post';
-import { SharedService } from '../../shared';
+import { SharedService, actionHandler } from '../../shared';
 import { PostService } from '../../post';
 
 interface Props {
@@ -18,8 +17,8 @@ interface Props {
 class PostModal extends React.Component<Props> {
 
   componentDidMount() {
-    post._containerMounted();
-    post._setAction('handleOpen', this.handleOpen);
+    actionHandler.containerMounted();
+    actionHandler.setAction('handleOpen', this.handleOpen);
   }
 
   @boundMethod

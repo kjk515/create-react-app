@@ -39,7 +39,7 @@ If you want to specify proxy more detail, make '/config/proxy.js' like this.
 proxy.js
 
 ```javascript
-export default {
+module.exports = {
   '/api/sample': {
     target: 'http://localhost:8082',
     pathRewrite: { '/api/sample': '/' },

@@ -8,7 +8,7 @@
     "lib"
   ],
   "dependencies": {
-    "nara-react-scripts": "0.1.7",
+    "nara-react-scripts": "0.1.8",
     "@nara.platform/station": "0.0.1",
     "typescript": "3.4.5",
     "react": "^16.8.6",

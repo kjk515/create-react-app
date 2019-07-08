@@ -1,7 +1,7 @@
 import React from 'react';
 import { Container, Header } from 'semantic-ui-react';
 import { observer, inject } from 'mobx-react';
-import { boundMethod } from 'autobind-decorator';
+import { reactAutobind } from '@nara.platform/accent';
 
 import PostListView from '../view/PostListView';
 import PostRegisterView from '../view/PostRegisterView';
@@ -14,6 +14,7 @@ interface Props {
 }
 
 @inject('sharedService', 'postService')
+@reactAutobind
 @observer
 class PostListContainer extends React.Component<Props> {
 
@@ -21,7 +22,6 @@ class PostListContainer extends React.Component<Props> {
     this.findPosts();
   }
 
-  @boundMethod
   findPosts(page?: number) {
     const { postService, sharedService } = this.props;
 
@@ -35,7 +35,6 @@ class PostListContainer extends React.Component<Props> {
     postService.countPosts().then(count => sharedService.setCount('post', count));
   }
 
-  @boundMethod
   handleRegister() {
     const { postService, sharedService } = this.props;
 

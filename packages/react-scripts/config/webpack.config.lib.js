@@ -318,8 +318,8 @@ module.exports = function(webpackEnv) {
                 baseConfig: {
                   extends: [require.resolve('eslint-config-nara')], // NARA
                 },
-                ignore: false,
-                useEslintrc: false,
+                ignore: true, // NARA
+                useEslintrc: true, // NARA
                 // @remove-on-eject-end
               },
               loader: require.resolve('eslint-loader'),

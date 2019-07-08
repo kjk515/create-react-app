@@ -1,8 +1,9 @@
 import { observable, action } from 'mobx';
-import { boundMethod } from 'autobind-decorator';
+import autobind from 'autobind-decorator';
 
 import postApi from '../apiclient/postApi';
 
+@autobind
 class PostService {
 
   @observable
@@ -11,7 +12,6 @@ class PostService {
   @observable
   post = {};
 
-  @boundMethod
   @action
   async findPosts(pageSet) {
     if (!pageSet) return;
@@ -25,7 +25,6 @@ class PostService {
     return posts.length;
   }
 
-  @boundMethod
   @action
   changePostProp(prop, value) {
     this.post = { ...this.post, [prop]: value };
@@ -36,7 +35,6 @@ class PostService {
     return postApi.registerPost(this.post);
   }
 
-  @boundMethod
   @action
   async findPost(postId) {
     this.post = await postApi.findPost(postId);
@@ -46,7 +44,6 @@ class PostService {
     return postApi.removePost(postId);
   }
 
-  @boundMethod
   @action
   initPost() {
     this.post = {};

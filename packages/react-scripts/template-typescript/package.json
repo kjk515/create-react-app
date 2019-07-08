@@ -8,8 +8,9 @@
     "lib"
   ],
   "dependencies": {
-    "nara-react-scripts": "0.1.8",
-    "@nara.platform/station": "0.0.1",
+    "nara-react-scripts": "0.1.10",
+    "@nara.platform/accent": "0.0.1",
+    "@nara.platform/dock": "0.0.1",
     "typescript": "3.4.5",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
@@ -34,7 +35,6 @@
     "build_lib": "react-scripts build_lib",
     "json_server": "json-server --watch json-server/db.json --routes json-server/routes.json --port 8082"
   },
-  "proxy": "http://localhost:8082",
   "eslintConfig": {
     "extends": "nara"
   },

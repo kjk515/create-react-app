@@ -1,6 +1,6 @@
 import React from 'react';
-import { boundMethod } from 'autobind-decorator';
 import { observer, inject } from 'mobx-react';
+import { reactAutobind } from '@nara.platform/accent';
 
 import PostView from './PostView';
 import withPostStore from './withPostStore';
@@ -13,6 +13,7 @@ interface Props {
 }
 
 @inject('postService', 'sharedService')
+@reactAutobind
 @observer
 class PostModal extends React.Component<Props> {
 
@@ -21,12 +22,10 @@ class PostModal extends React.Component<Props> {
     actionHandler.setAction('handleOpen', this.handleOpen);
   }
 
-  @boundMethod
   findPost(id: string) {
     this.props.postService.findPost(id);
   }
 
-  @boundMethod
   handleOpen(id: string) {
     this.props.sharedService.changeModal('postSnap', true);
     this.findPost(id);

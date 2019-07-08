@@ -1,8 +1,8 @@
 import React from 'react';
 import { Container, Header } from 'semantic-ui-react';
 import { inject, observer } from 'mobx-react';
-import { boundMethod } from 'autobind-decorator';
 import { RouteComponentProps, withRouter } from 'react-router-dom';
+import { reactAutobind } from '@nara.platform/accent';
 
 import PostView from '../view/PostView';
 import { PostService } from '../..';
@@ -16,6 +16,7 @@ interface Props extends RouteComponentProps<Params> {
 }
 
 @inject('postService')
+@reactAutobind
 @observer
 class PostContainer extends React.Component<Props> {
 
@@ -27,13 +28,11 @@ class PostContainer extends React.Component<Props> {
     this.props.postService.initPost();
   }
 
-  @boundMethod
   findPost() {
     const { id } = this.props.match.params;
     this.props.postService.findPost(id);
   }
 
-  @boundMethod
   handleRemove() {
     const { id } = this.props.match.params;
     this.props.postService.removePost(id)

@@ -1,8 +1,9 @@
 import { observable, action } from 'mobx';
-import { boundMethod } from 'autobind-decorator';
+import autobind from 'autobind-decorator';
 
 import PageModel from '../model/PageModel';
 
+@autobind
 class SharedService {
 
   @observable
@@ -11,19 +12,16 @@ class SharedService {
   @observable
   pageMap = new Map();
 
-  @boundMethod
   @action
   changeModal(key, value) {
     this.modalMap.set(key, value);
   }
 
-  @boundMethod
   @action
   setPageMap(key, offset, limit) {
     this.pageMap.set(key, new PageModel(offset, limit));
   }
 
-  @boundMethod
   @action
   initPageMap(key) {
     if (Array.isArray(key)) {
@@ -33,7 +31,6 @@ class SharedService {
     }
   }
 
-  @boundMethod
   @action
   initModalMap(key) {
     if (Array.isArray(key)) {
@@ -43,7 +40,6 @@ class SharedService {
     }
   }
 
-  @boundMethod
   @action
   setCount(key, count) {
     const pageSet = { ...this.pageMap.get(key) };
@@ -57,7 +53,6 @@ class SharedService {
     this.pageMap.set(key, pageSet);
   }
 
-  @boundMethod
   @action
   setPage(key, page) {
     const pageSet = { ...this.pageMap.get(key) };

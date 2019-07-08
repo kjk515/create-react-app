@@ -1,11 +1,12 @@
 import React from 'react';
 import { Container, Header } from 'semantic-ui-react';
 import { inject, observer } from 'mobx-react';
-import { boundMethod } from 'autobind-decorator';
+import { reactAutobind } from '@nara.platform/accent';
 
 import PostView from '../view/PostView';
 
 @inject('postService')
+@reactAutobind
 @observer
 class PostContainer extends React.Component {
 
@@ -17,13 +18,11 @@ class PostContainer extends React.Component {
     this.props.postService.initPost();
   }
 
-  @boundMethod
   findPost() {
     const { id } = this.props.match.params;
     this.props.postService.findPost(id);
   }
 
-  @boundMethod
   handleRemove() {
     const { id } = this.props.match.params;
     this.props.postService.removePost(id)

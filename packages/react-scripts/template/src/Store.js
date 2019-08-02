@@ -1,14 +1,14 @@
 import React from 'react';
 import { Provider } from 'mobx-react';
 
-import { sharedService } from './shared';
-import { postService } from './post';
+import { SharedService } from './shared';
+import { PostService } from './post';
 
 function Store({ children }) {
   return (
     <Provider
-      sharedService={sharedService}
-      postService={postService}
+      sharedService={SharedService.instance}
+      postService={PostService.instance}
     >
       {children}
     </Provider>

@@ -1,9 +1,11 @@
 import withSplitting from './ui/withSplitting';
-import sharedService from './present/logic/sharedService';
+import SharedService from './present/logic/SharedService';
 import actionHandler from './present/logic/actionHandler';
+import instance from './present/logic/instance';
 
 export {
   withSplitting,
-  sharedService,
+  SharedService,
   actionHandler,
+  instance,
 };

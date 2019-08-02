@@ -1,9 +1,9 @@
 import PostListContainer from './ui/logic/PostListContainer';
 import PostContainer from './ui/logic/PostContainer';
-import postService from './present/logic/postService';
+import PostService from './present/logic/PostService';
 
 export {
   PostListContainer,
   PostContainer,
-  postService,
+  PostService,
 };

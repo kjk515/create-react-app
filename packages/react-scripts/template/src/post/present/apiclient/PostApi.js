@@ -2,8 +2,13 @@ import axios from 'axios';
 
 import PostViewModel from '../../ui/model/PostViewModel';
 import PostApiModel from '../model/PostApiModel';
+import { instance } from '../../../shared';
 
 class PostApi {
+
+  @instance
+  static instance;
+
   rootURL = process.env.REACT_APP_API_URL;
 
   findPosts(offset, limit) {
@@ -30,4 +35,4 @@ class PostApi {
   }
 }
 
-export default new PostApi();
+export default PostApi;

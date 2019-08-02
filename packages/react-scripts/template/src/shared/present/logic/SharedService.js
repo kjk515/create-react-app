@@ -1,10 +1,14 @@
 import { observable, action } from 'mobx';
 import autobind from 'autobind-decorator';
 
+import instance from './instance';
 import PageModel from '../model/PageModel';
 
 @autobind
 class SharedService {
+
+  @instance
+  static instance;
 
   @observable
   modalMap = new Map();
@@ -67,4 +71,4 @@ class SharedService {
   }
 }
 
-export default new SharedService();
+export default SharedService;

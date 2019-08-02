@@ -1,10 +1,15 @@
 import { observable, action } from 'mobx';
 import autobind from 'autobind-decorator';
 
-import postApi from '../apiclient/postApi';
+import { instance } from '../../../shared';
+import PostApi from '../apiclient/PostApi';
+
 
 @autobind
 class PostService {
+
+  @instance
+  static instance;
 
   @observable
   posts = [];
@@ -16,11 +21,11 @@ class PostService {
   async findPosts(pageSet) {
     if (!pageSet) return;
 
-    this.posts = await postApi.findPosts(pageSet.offset, pageSet.limit);
+    this.posts = await PostApi.instance.findPosts(pageSet.offset, pageSet.limit);
   }
 
   async countPosts() {
-    const posts = await postApi.countPosts();
+    const posts = await PostApi.instance.countPosts();
     // json-server doesn't provider total count route. returned total all Posts.
     return posts.length;
   }
@@ -32,16 +37,16 @@ class PostService {
 
   registerPost() {
     this.post.date = new Date().toISOString().slice(0, 10);
-    return postApi.registerPost(this.post);
+    return PostApi.instance.registerPost(this.post);
   }
 
   @action
   async findPost(postId) {
-    this.post = await postApi.findPost(postId);
+    this.post = await PostApi.instance.findPost(postId);
   }
 
   removePost(postId) {
-    return postApi.removePost(postId);
+    return PostApi.instance.removePost(postId);
   }
 
   @action
@@ -50,4 +55,4 @@ class PostService {
   }
 }
 
-export default new PostService();
+export default PostService;

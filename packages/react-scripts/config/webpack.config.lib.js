@@ -55,6 +55,8 @@ const cssModuleRegex = /\.module\.css$/;
 const sassRegex = /\.(scss|sass)$/;
 const sassModuleRegex = /\.module\.(scss|sass)$/;
 
+const nodeExternals = require('webpack-node-externals');
+
 // development, production 모드 별 config파일 나눌 수 있을듯
 // This is the production and development configuration.
 // It is focused on developer experience, fast rebuilds, and a minimal bundle.
@@ -671,5 +673,9 @@ module.exports = function(webpackEnv) {
     // Turn off performance processing because we utilize
     // our own hints via the FileSizeReporter
     performance: false,
+
+    externals: [
+      nodeExternals({ whitelist: [/\.(sa|sc|le|c)ss$/] }),
+    ],
   };
 };

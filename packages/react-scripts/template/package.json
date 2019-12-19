@@ -8,9 +8,9 @@
     "lib"
   ],
   "dependencies": {
-    "nara-react-scripts": "0.1.14",
+    "nara-react-scripts": "0.1.19",
     "@nara.platform/accent": "0.0.1",
-    "@nara.platform/dock": "0.0.1",
+    "@nara.platform/dock": "0.0.4",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
     "react-router-dom": "^5.0.1",

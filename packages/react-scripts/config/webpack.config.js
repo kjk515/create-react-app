@@ -161,8 +161,9 @@ module.exports = function(webpackEnv) {
       // the line below with these two lines if you prefer the stock client:
       // require.resolve('webpack-dev-server/client') + '?/',
       // require.resolve('webpack/hot/dev-server'),
-      isEnvDevelopment &&
-        require.resolve('react-dev-utils/webpackHotDevClient'),
+      // FIXME: Polyfill 때문에 hotDev 사용중지..
+      // isEnvDevelopment &&
+      //   require.resolve('react-dev-utils/webpackHotDevClient'),
       // Finally, this is your app's code:
       paths.appIndexJs,
       // 초기화 중 런타임오류 발생시 devServer Client가 종료되지 않도록 appIndexJs가 마지막으로 포함됨

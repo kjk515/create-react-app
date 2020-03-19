@@ -1,5 +1,5 @@
 {
-  "name": "sample-drama",
+  "name": "@nara.drama/sample-front",
   "version": "0.1.0",
   "description": "Describe your drama",
   "author": "Nextree",
@@ -26,6 +26,7 @@
   "devDependencies": {
     "nara-react-scripts": "0.1.21",
     "@nara.platform/storybook": "0.0.1",
+    "@storybook/react": "^5.3.17",
     "typescript": "^3.8.3",
     "json-server": "^0.15.0",
     "@types/jest": "24.0.13",

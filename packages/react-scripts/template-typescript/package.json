@@ -17,8 +17,8 @@
     "storybook": "start-storybook -s public -p 4000",
     "build-storybook": "build-storybook -s public",
     "start": "react-scripts start",
-    "build_app": "react-scripts build_app",
-    "build_lib": "react-scripts build_lib",
+    "build-app": "react-scripts build-app",
+    "build-lib": "react-scripts build-lib",
     "json_server": "json-server --watch json-server/db.json --routes json-server/routes.json --port 8082"
   },
   "dependencies": {

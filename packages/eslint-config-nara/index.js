@@ -38,7 +38,7 @@ module.exports = {
   "rules": {
     // "prettier/prettier": "error"
   },
-  overrides: {
+  overrides: [{
     files: ['**/*.ts', '**/*.tsx'],
     parser: '@typescript-eslint/parser',
     parserOptions: {
@@ -89,5 +89,5 @@ module.exports = {
       '@typescript-eslint/no-useless-constructor': 'warn',
       'import/no-unresolved': 'off',
     },
-  },
+  }],
 };

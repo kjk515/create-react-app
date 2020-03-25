@@ -13,6 +13,14 @@
   "publishConfig": {
     "registry": "http://58.225.16.61:10001/repository/npm-private/"
   },
+  "scripts": {
+    "storybook": "start-storybook -s public -p 4000",
+    "build-storybook": "build-storybook -s public",
+    "start": "react-scripts start",
+    "build_app": "react-scripts build_app",
+    "build_lib": "react-scripts build_lib",
+    "json_server": "json-server --watch json-server/db.json --routes json-server/routes.json --port 8082"
+  },
   "dependencies": {
     "@nara.platform/accent": "0.0.1",
     "@nara.platform/dock": "0.0.4",
@@ -34,14 +42,6 @@
     "@types/react": "16.8.19",
     "@types/react-dom": "16.8.4",
     "@types/react-router-dom": "^4.3.3"
-  },
-  "scripts": {
-    "storybook": "start-storybook -s public -p 4000",
-    "build-storybook": "build-storybook -s public",
-    "start": "react-scripts start",
-    "build_app": "react-scripts build_app",
-    "build_lib": "react-scripts build_lib",
-    "json_server": "json-server --watch json-server/db.json --routes json-server/routes.json --port 8082"
   },
   "eslintConfig": {
     "extends": "nara"

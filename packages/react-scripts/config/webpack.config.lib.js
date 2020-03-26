@@ -179,10 +179,10 @@ module.exports = function(webpackEnv) {
       pathinfo: isEnvDevelopment,
       // There will be one main bundle, and one file per asynchronous chunk.
       // In development, it does not produce real files.
-      filename: 'snap.js',
+      filename: 'lib.js',
       // TODO: remove this when upgrading to webpack 5
       futureEmitAssets: true,
-      libraryTarget: 'umd',
+      libraryTarget: 'commonjs',
     },
     optimization: {
       minimize: false,

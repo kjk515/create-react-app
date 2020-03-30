@@ -102,7 +102,8 @@ module.exports = {
   publicUrl: getPublicUrl(resolveApp('package.json')),
   servedPath: getServedPath(resolveApp('package.json')),
   libBuild: resolveApp('lib'), // NARA
-  libIndexJs: resolveModule(resolveApp, process.env.LIB_INDEX), // NARA
+  libIndexJs: resolveModule(resolveApp, process.env.LIB_INDEX || 'src/lib/index'), // NARA
+  libTsConfig: resolveApp(process.env.LIB_TS_CONFIG || 'src/lib/tsconfig.json'), // NARA
   proxyProperties: resolveApp('config/proxy.js'), // NARA
 };
 
@@ -128,7 +129,8 @@ module.exports = {
   publicUrl: getPublicUrl(resolveApp('package.json')),
   servedPath: getServedPath(resolveApp('package.json')),
   libBuild: resolveApp('lib'), // NARA
-  libIndexJs: resolveModule(resolveApp, process.env.LIB_INDEX), // NARA
+  libIndexJs: resolveModule(resolveApp, process.env.LIB_INDEX || 'src/lib/index'), // NARA
+  libTsConfig: resolveApp(process.env.LIB_TS_CONFIG || 'src/lib/tsconfig.json'), // NARA
   proxyProperties: resolveApp('config/proxy.js'), // NARA
   // These properties only exist before ejecting:
   ownPath: resolveOwn('.'),

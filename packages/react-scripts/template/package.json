@@ -31,7 +31,7 @@
     "semantic-ui-react": "^0.88.2"
   },
   "devDependencies": {
-    "nara-react-scripts": "0.2.2",
+    "nara-react-scripts": "0.2.3",
     "@nara.platform/storybook": "0.0.1",
     "@storybook/react": "^5.3.17",
     "json-server": "^0.15.0"

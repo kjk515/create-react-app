@@ -642,7 +642,7 @@ module.exports = function(webpackEnv) {
           resolveTypeReferenceDirectiveModule: process.versions.pnp
             ? `${__dirname}/pnpTs.js`
             : undefined,
-          tsconfig: paths.appTsConfig,
+          tsconfig: paths.libTsConfig,
           reportFiles: [
             '**',
             '!**/__tests__/**',

@@ -580,7 +580,7 @@ module.exports = function(webpackEnv) {
         new MiniCssExtractPlugin({
           // Options similar to the same options in webpackOptions.output
           // both options are optional
-          filename: 'snap.css', // NARA css filename
+          filename: 'lib.css', // NARA css filename
           // chunkFilename: 'static/css/[name].[contenthash:8].chunk.css', // NARA 주석처리
         }),
       // output 파일과 일치하는 모든 자원파일이름이 매핑된 manifest file 생성

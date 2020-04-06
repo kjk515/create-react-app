@@ -1,6 +1,6 @@
 {
   "name": "nara-react-scripts",
-  "version": "0.2.4",
+  "version": "0.2.6",
   "description": "Configuration and scripts for Create Nara Drama.",
   "repository": {
     "type": "git",
@@ -24,7 +24,8 @@
     "utils"
   ],
   "bin": {
-    "react-scripts": "./bin/react-scripts.js"
+    "react-scripts": "./bin/react-scripts.js",
+    "nara-react-scripts": "./bin/react-scripts.js"
   },
   "types": "./lib/react-app.d.ts",
   "dependencies": {

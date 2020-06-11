@@ -101,30 +101,32 @@ module.exports = {
     // 여유있는 기준으로 강제
     'react/sort-comp': ['error', {
       order: [
-        'props',
-        'instance-variables',
-        'getters',
-        'setters',
-        'state',
-        'constructor',
+        'reactField',
         'static-methods',
+        'type-annotations',
+        'instance-variables',
+        'constructor',
         'lifecycle',
-        'instance-methods',
+        // 'instance-methods',
         'everything-else',
-        '/^on.+$/',
+        // '/^on.+$/',
+        // 'getters',
+        // 'setters',
         // '/^(get|set|is)(?!(InitialState$|DefaultProps$|ChildContext$)).+$/',
         'rendering',
       ],
       groups: {
-        props: [
+        reactField: [
           'displayName',
           'propTypes',
           'defaultProps',
+          'contextTypes',
+          'state',
         ],
         lifecycle: [
           // 'displayName',
           // 'propTypes',
-          'contextTypes',
+          // 'contextTypes',
           'childContextTypes',
           'mixins',
           'statics',

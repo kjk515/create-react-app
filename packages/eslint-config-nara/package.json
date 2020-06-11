@@ -1,6 +1,6 @@
 {
   "name": "eslint-config-nara",
-  "version": "0.1.6-test.1",
+  "version": "0.1.6-test.3",
   "description": "ESLint configuration for NARA",
   "license": "UNLICENSED",
   "engines": {

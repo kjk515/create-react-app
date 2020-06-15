@@ -5,7 +5,7 @@ module.exports = {
     // 20. 할 차례
     'array-bracket-spacing': 'off',
     'block-spacing': ['warn', 'always'],
-    'brace-style': 'off',
+    'brace-style': ['warn', 'stroustrup'],
     camelcase: ['warn', { properties: 'never' }],
 
 
@@ -37,7 +37,7 @@ module.exports = {
     'computed-property-spacing': 'off',
 
     'eol-last': ['warn', 'always'],
-    
+
     // 함수 소괄호 형태 제한하지 않음
     'function-paren-newline': ['off', 'consistent'],
 
@@ -61,7 +61,7 @@ module.exports = {
 
     // 클래스 속성은 사이에 라인을 넣지만, 단일라인은 예외
     'lines-between-class-members': ['error', 'always', { exceptAfterSingleLine: true }],
-    
+
     'max-len': ['warn', 150, 2, {
       ignoreUrls: true,
       ignoreComments: false,

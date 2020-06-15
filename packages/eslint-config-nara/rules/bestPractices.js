@@ -26,9 +26,11 @@ module.exports = {
     'no-else-return': 'off',
     // TODO: no-multi-spaces 할 차례
 
-    // 필요시 정렬을 하기 위해 제한하지 않음
-    'no-multi-spaces': ['off', {
-      ignoreEOLComments: false,
+    'no-multi-spaces': ['error', {
+      ignoreEOLComments: true,
+      exceptions: {
+        Property: false,
+      },
     }],
 
     // 함수 파라미터 재할당 제한하지 않음

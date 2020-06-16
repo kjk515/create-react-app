@@ -1,60 +1,60 @@
 
+// https://github.com/yannickcr/eslint-plugin-react/blob/master/docs/rules
+
 
 module.exports = {
-  // https://github.com/yannickcr/eslint-plugin-react/blob/master/docs/rules
-  // 룰 검토 완료
   rules: {
-    // HTML 컴포넌트는 강제하지 않음
+    /* 버튼 태그 type 지정 - 강제하지 않음 */
     'react/button-has-type': ['off', {
       button: true,
       submit: true,
       reset: false,
     }],
 
-    // defaultProps를 권장 하지만 강제하지 않음
+    /* defaultProps 사용 - 권장 하지만 강제하지 않음 */
     'react/default-props-match-prop-types': ['off', { allowRequiredDefaults: false }],
 
-    // destructuring을 권장하지만 강제하지 않음
+    /* 변수 해체 할당 - 권장하지만 강제하지 않음 */
     'react/destructuring-assignment': ['off', 'always'],
 
     // 공통 컴포넌트의 자동 문서화를 위해 해제
     'react/forbid-foreign-prop-types': ['off', { allowInPropTypes: true }],
 
-    // array와 any는 제한하지만 object는 사용성과 생산성 때문에 강제하지 않음
+    /* propTypes 선언 시 금지 대상 - array, any는 제한하지만 object는 사용성과 생산성 때문에 강제하지 않음 */
     'react/forbid-prop-types': ['warn', {
       forbid: ['any', 'array'],
       checkContextTypes: false,
       checkChildContextTypes: false,
     }],
 
-    // 불필요한 boolean prop을 넘기지 않도록 제한
+    /* props에 boolean 타입 값 사용  */
     'react/jsx-boolean-value': ['warn', 'never', { always: [] }],
 
-    // jsx 중괄호에 공백을 안넣도록 권장하지만 강제하지 않음
+    /* jsx props 중괄호에 공백 사용 - 안넣는걸 권장하지만 강제하지 않음 */
     'react/jsx-curly-spacing': ['off', 'never', { allowMultiline: true }],
 
-    // '=' 양옆에 공백을 넣지 않도록 권장하지만 강제하지 않음
-    'react/jsx-equals-spacing': ['off', 'never'],
+    /* jsx props '=' 양옆에 공백 사용 - 넣지 않음 */
+    'react/jsx-equals-spacing': ['warn', 'never'],
 
-    // jsx 확장자 미사용
+    /* jsx가 사용된 파일 확장자 */
     'react/jsx-filename-extension': ['error', { extensions: ['.js', '.jsx', '.tsx'] }],
 
-    // JSX props 줄바꿈 스타일 강제하지 않음
-    'react/jsx-first-prop-new-line': ['off', 'multiline-multiprop'],
+    /* jsx 첫번째 props 줄바꿈 스타일 */
+    'react/jsx-first-prop-new-line': ['warn', 'multiline-multiprop'],
 
-    // JSX 라인에
+    /* jsx 라인별 props 선언 */
     'react/jsx-max-props-per-line': ['error', { maximum: 1, when: 'multiline' }],
 
-    // Fragment 사용법에 대해 제한하지 않음
+    /* Fragment 사용 - 제한하지 않음 */
     'react/jsx-fragments': 'off',
 
     // HTML 영역은 강제하지 않음
     'react/jsx-no-target-blank': ['off', { enforceDynamicLinks: 'always' }],
 
-    // 라인에 단일 구문 사용을 권장하나 제한하지 않음
+    /* jsx 라인별 단일 구문 혹은 컴포넌트 사용 - 단일 구문 사용을 권장하나 제한하지 않음 */
     'react/jsx-one-expression-per-line': ['off', { allow: 'single-child' }],
 
-    // FIXME: Erorr로 할지 Warn으로 할지
+    /* jsx 태그 사용시 공백 */
     'react/jsx-tag-spacing': ['warn', {
       closingSlash: 'never',
       beforeSelfClosing: 'always',
@@ -62,40 +62,43 @@ module.exports = {
       beforeClosing: 'never',
     }],
 
-    // FIXME: Erorr로 할지 Warn으로 할지
+    /* jsx 에서 사용하지 않는 변수 선언 */
     'react/jsx-uses-vars': 'warn',
 
-    // jsx가 다중라인일때 소괄호로 감싸도록 강제하지만 arrow, 조건문는 강제하지 않음
-    'react/jsx-wrap-multilines': ['error', {
+    /* jsx 다중 라인일 때 소괄호로 감싸기 - 강제 */
+    'react/jsx-wrap-multilines': ['warn', {
       declaration: 'parens-new-line',
       assignment: 'parens-new-line',
       return: 'parens-new-line',
-      arrow: 'ignore',
+      arrow: 'parens-new-line',
       condition: 'ignore',
       logical: 'parens-new-line',
       prop: 'ignore',
     }],
 
-    // 배열 항목 key에 index 사용을 비권장 하지만 제한하지 않음
+    /* 배열 key에 인덱스 사용 - 비권장 하지만 제한하지 않음 */
     'react/no-array-index-key': 'off',
 
-    // dangerouslySetInnerHTML 사용 시 조심해야 하지만 제한하지 않음
+    /* dangerouslySetInnerHTML 사용 금지 - 제한하지 않음 */
     'react/no-danger': 'off',
 
-    // 파일당 하나의 컴포넌트 정의를 권장 하지만 제한하지는 않음
+    /* 한개의 파일에 여러 컴포넌트 정의 금지 */
     'react/no-multi-comp': ['off', { ignoreStateless: true }],
 
-    // 함수형, 클래스형 둘다 사용
+    /* 미사용 propTypes 금지 */
+    'react/no-unused-prop-types': 'warn',
+
+    /* stateless 함수형태 사용 */
     'react/prefer-stateless-function': ['off', { ignorePureComponents: true }],
 
-    // prop types를 권장하지만 강제하지 않음
+    /* propTypes 정의 - 권장하지만 강제하지 않음 */
     'react/prop-types': ['off', {
       ignore: ['match', 'location', 'history', 'children'],
       customValidators: [],
       skipUndeclared: false,
     }],
 
-    // defaultProps를 권장하지만 강제하지 않음
+    /* defaultProps 정의 - 권장하지만 강제하지 않음 */
     'react/require-default-props': ['off', { forbidDefaultForRequired: true }],
 
     // 여유있는 기준으로 강제

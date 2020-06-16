@@ -1,34 +1,38 @@
 
+// https://github.com/benmosher/eslint-plugin-import/blob/master/docs/rules
+
 
 module.exports = {
-  // https://github.com/benmosher/eslint-plugin-import/blob/master/docs/rules
-  // 룰 검토 완료
   rules: {
-    // alias 사용으로 인해 off
+    /* import 구문 유효성 체크 - alias 사용으로 인해 off */
     'import/extensions': 'off',
 
-    // import 구문 후에는 두줄 공백
+    /* import 구문 후 라인공백 */
     'import/newline-after-import': ['error', { count: 2 }],
 
-    // mes-shared에서 가져오는 공용 라이브러리때문에 강제하지 않음
+    /* 관련없는 디펜던시 포함 불가 */
     'import/no-extraneous-dependencies': 'off',
 
-    // export 형태 강제하지 않음
-    'import/no-named-as-default': 'off',
-
-    // export 형태 강제하지 않음
+    /* import 시 named로 export 된 이름을 default import 된 객체 속성으로 사용 불가 */
     'import/no-named-as-default-member': 'off',
 
-    // import * as all 미사용
+    /* default import 시 named로 export 된 이름 사용 불가  */
+    'import/no-named-as-default': 'off',
+
+    /* import * as 사용 불가 */
     'import/no-namespace': 'error',
 
-    // 존재하지 않는 모듈 사용 체크 TODO: ignore 목록 추가
-    'import/no-unresolved': ['error', { commonjs: true, caseSensitive: true, ignore: ['\@nara', '\@/', '\@resource', '\-shared', '\-loader', 'resource'] }],
+    /* 정의되지 않은 모듈 사용 불가 - typescript 사용으로 인해 off */
+    'import/no-unresolved': ['off', {
+      commonjs: true,
+      caseSensitive: true,
+      ignore: ['\@nara', '\@/', '\@resource', '\-shared', '\-loader', 'resource', '~'],
+    }],
 
-    // 소스코드 (뷰어용) import 때문에 제한하지 않음
+    /* webpack 로더 문법 사용 불가 - 소스코드 import 때문에 제한하지 않음 */
     'import/no-webpack-loader-syntax': 'off',
 
-    // export 형태 강제하지 않음
+    /* default export 항상 사용 */
     'import/prefer-default-export': 'off',
   },
 };

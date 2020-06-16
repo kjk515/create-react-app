@@ -1,10 +1,10 @@
 
+// https://github.com/evcohen/eslint-plugin-jsx-a11y/tree/master/docs/rules
+
 
 module.exports = {
-  // https://github.com/evcohen/eslint-plugin-jsx-a11y/tree/master/docs/rules
-  // 룰 검토 완료
   rules: {
-    // HTML에 대해 강제하지 않음
+    /* alt 정의 - 강제하지 않음 */
     'jsx-a11y/alt-text': ['off', {
       elements: ['img', 'object', 'area', 'input[type="image"]'],
       img: [],
@@ -13,26 +13,26 @@ module.exports = {
       'input[type="image"]': [],
     }],
 
-    // HTML에 대해 강제하지 않음
-    'jsx-a11y/anchor-has-content': ['off', { components: [] }],
+    /* 빈 Anchor(a) 태크 금지 */
+    'jsx-a11y/anchor-has-content': ['warn', { components: [] }],
 
-    // HTML에 대해 강제하지 않음
+    /* Anchor 태크 href 유효성 체크 - 하지 않음 */
     'jsx-a11y/anchor-is-valid': ['off', {
       components: ['Link'],
       specialLink: ['to'],
       aspects: ['noHref', 'invalidHref', 'preferButton'],
     }],
 
-    // HTML에 대해 강제하지 않음
+    /* aria-activedescendant 에 tabIndex 명시 - 강제하지 않음 */
     'jsx-a11y/aria-activedescendant-has-tabindex': 'off',
 
-    // HTML에 대해 강제하지 않음
+    /* 클릭 이벤트 정의시 키 이벤트 핸들러도 정의 - 강제하지 않음 */
     'jsx-a11y/click-events-have-key-events': 'off',
 
-    // HTML에 대해 강제하지 않음
+    /* alt 사용시 내용 체크 - 강제하지 않음 */
     'jsx-a11y/img-redundant-alt': 'off',
 
-    // HTML에 대해 강제하지 않음
+    /* label에 작동 될 엘리먼트 연결 - 강제하지 않음 */
     'jsx-a11y/label-has-associated-control': ['off', {
       labelComponents: [],
       labelAttributes: [],
@@ -41,7 +41,7 @@ module.exports = {
       depth: 25
     }],
 
-    // HTML에 대해 강제하지 않음
+    /* label 태그 htmlFor 사용 */
     'jsx-a11y/label-has-for': ['off', {
       components: [],
       required: {
@@ -110,6 +110,6 @@ module.exports = {
     'jsx-a11y/role-supports-aria-props': 'off',
 
     // HTML에 대해 강제하지 않음
-    'jsx-a11y/tabindex-no-positive': 'error',
+    'jsx-a11y/tabindex-no-positive': 'off',
   },
 };

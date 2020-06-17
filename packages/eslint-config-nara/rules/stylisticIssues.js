@@ -15,12 +15,12 @@ module.exports = {
     camelcase: ['error', { properties: 'never' }],
 
     /* 속성 선언 시 마지막 쉼표 사용 - 멀티라인에서 마지막 쉼표를 항상 넣는다 */
-    'comma-dangle': ['error', {
+    'comma-dangle': ['warn', {
       arrays: 'always-multiline',
       objects: 'always-multiline',
       imports: 'always-multiline',
       exports: 'always-multiline',
-      functions: 'always-multiline',
+      functions: 'ignore',
     }],
 
     /* 콤마 표기 시 공백 */
@@ -50,7 +50,7 @@ module.exports = {
     'eol-last': ['warn', 'always'],
 
     /* 함수 사용 시 매개변수 - 시작부와 종료부의 일관된 사용 */
-    'function-paren-newline': ['warn', 'consistent'],
+    'function-paren-newline': ['off', 'consistent'],
 
     /* 함수 호출 시 공백 사용 - 사용 불가 */
     'func-call-spacing': ['error', 'never'],

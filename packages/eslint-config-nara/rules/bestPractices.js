@@ -29,13 +29,12 @@ module.exports = {
 
     /* else에서 리턴 사용 불가 */
     'no-else-return': 'off',
-    // TODO: no-multi-spaces 할 차례
 
     /* 두칸 공백 사용 불가 */
     'no-multi-spaces': ['error', {
       ignoreEOLComments: true,
       exceptions: {
-        Property: false,
+        Property: true,
       },
     }],
 

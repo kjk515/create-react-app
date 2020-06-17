@@ -30,6 +30,9 @@ module.exports = {
     /* props에 boolean 타입 값 사용  */
     'react/jsx-boolean-value': ['warn', 'never', { always: [] }],
 
+    /* jsx 중괄호 사용 여부 */
+    'react/jsx-curly-brace-presence': 'off',
+
     /* jsx props 중괄호에 공백 사용 - 안넣는걸 권장하지만 강제하지 않음 */
     'react/jsx-curly-spacing': ['off', 'never', { allowMultiline: true }],
 
@@ -43,7 +46,7 @@ module.exports = {
     'react/jsx-first-prop-new-line': ['warn', 'multiline-multiprop'],
 
     /* jsx 라인별 props 선언 */
-    'react/jsx-max-props-per-line': ['error', { maximum: 1, when: 'multiline' }],
+    'react/jsx-max-props-per-line': ['warn', { maximum: 1, when: 'multiline' }],
 
     /* Fragment 사용 - 제한하지 않음 */
     'react/jsx-fragments': 'off',
@@ -124,6 +127,8 @@ module.exports = {
           'propTypes',
           'defaultProps',
           'contextTypes',
+          'contextType',
+          'context',
           'state',
         ],
         lifecycle: [

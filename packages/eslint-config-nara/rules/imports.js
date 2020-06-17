@@ -8,7 +8,7 @@ module.exports = {
     'import/extensions': 'off',
 
     /* import 구문 후 라인공백 */
-    'import/newline-after-import': ['error', { count: 2 }],
+    'import/newline-after-import': ['warn', { count: 2 }],
 
     /* 관련없는 디펜던시 포함 불가 */
     'import/no-extraneous-dependencies': 'off',
@@ -20,7 +20,7 @@ module.exports = {
     'import/no-named-as-default': 'off',
 
     /* import * as 사용 불가 */
-    'import/no-namespace': 'error',
+    'import/no-namespace': 'off',
 
     /* 정의되지 않은 모듈 사용 불가 - typescript 사용으로 인해 off */
     'import/no-unresolved': ['off', {

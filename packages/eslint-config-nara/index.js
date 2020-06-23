@@ -65,7 +65,8 @@ module.exports = {
       // '@typescript-eslint/no-angle-bracket-type-assertion': 'warn',
       'no-array-constructor': 'off',
       '@typescript-eslint/no-array-constructor': 'warn',
-      '@typescript-eslint/no-namespace': 'error',
+
+      '@typescript-eslint/no-namespace': 'off',
 
       'no-use-before-define': 'off',
       '@typescript-eslint/no-use-before-define': [
@@ -139,7 +140,7 @@ module.exports = {
       // '@typescript-eslint/naming-convention': ['error', { format: 'PascalCase' }]
 
       /* 빈 인터페이스 정의 */
-      '@typescript-eslint/no-empty-interface': ['warn'],
+      '@typescript-eslint/no-empty-interface': ['warn', { allowSingleExtends: true }],
 
       /* (버전업 필요) 이중 세미콜론 사용 금지 */
       // '@typescript-eslint/no-extra-semi': ['error'],
@@ -152,7 +153,10 @@ module.exports = {
       /* 타입 선언 시 공백 스타일 */
       '@typescript-eslint/type-annotation-spacing': ['error', { before: false, after: true, overrides: {
           arrow: { before: true, after: true }
-        }}]
+        }}],
+
+      /* TODO: not-null-assertion (!) 사용 금지 */
+      '@typescript-eslint/no-non-null-assertion': 'off',
     },
   }],
 };

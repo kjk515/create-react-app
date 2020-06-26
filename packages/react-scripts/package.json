@@ -1,6 +1,6 @@
 {
   "name": "nara-react-scripts",
-  "version": "0.3.4-test.2",
+  "version": "0.3.4",
   "description": "Configuration and scripts for Create Nara Drama.",
   "repository": {
     "type": "git",
@@ -47,7 +47,7 @@
     "dotenv": "6.2.0",
     "dotenv-expand": "4.2.0",
     "eslint": "^5.16.0",
-    "eslint-config-nara": "^0.2.4-test.2",
+    "eslint-config-nara": "^0.2.4",
     "eslint-config-react-app": "^4.0.1",
     "eslint-loader": "2.1.2",
     "eslint-plugin-flowtype": "2.50.1",

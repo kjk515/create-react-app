@@ -45,14 +45,23 @@ module.exports = {
     /* jsx 첫번째 props 줄바꿈 스타일 */
     'react/jsx-first-prop-new-line': ['warn', 'multiline-multiprop'],
 
-    /* jsx 라인별 props 선언 */
-    'react/jsx-max-props-per-line': ['warn', { maximum: 1, when: 'multiline' }],
-
     /* Fragment 사용 - 제한하지 않음 */
     'react/jsx-fragments': 'off',
 
-    // HTML 영역은 강제하지 않음
+    /* JSX Element 정렬 */
+    'react/jsx-indent': ['warn', 2, { checkAttributes: true, indentLogicalExpressions: true }],
+
+    /* JSX 최대 들여쓰기 */
+    'react/jsx-max-depth': ['warn', { max: 7 }],
+
+    /* jsx 라인별 props 선언 */
+    'react/jsx-max-props-per-line': ['warn', { maximum: 1, when: 'multiline' }],
+
+    // HTML 규칙은 강제하지 않음
     'react/jsx-no-target-blank': ['off', { enforceDynamicLinks: 'always' }],
+
+    /* 미사용 Fragment 제거 */
+    'react/jsx-no-useless-fragment': ['warn'],
 
     /* jsx 라인별 단일 구문 혹은 컴포넌트 사용 - 단일 구문 사용을 권장하나 제한하지 않음 */
     'react/jsx-one-expression-per-line': ['off', { allow: 'single-child' }],
@@ -79,17 +88,34 @@ module.exports = {
       prop: 'ignore',
     }],
 
+    'react/no-access-state-in-setstate': ['warn'],
+
     /* 배열 key에 인덱스 사용 - 비권장 하지만 제한하지 않음 */
     'react/no-array-index-key': 'off',
+
+    /* JSX prop에 children 사용 금지 */
+    'react/no-children-prop': 'error',
 
     /* dangerouslySetInnerHTML 사용 금지 - 제한하지 않음 */
     'react/no-danger': 'off',
 
-    /* 한개의 파일에 여러 컴포넌트 정의 금지 */
-    'react/no-multi-comp': ['off', { ignoreStateless: true }],
+    /* deprecated 된 lifecycle 메소드 사용 금지 */
+    'react/no-deprecated': 'error',
 
-    /* 미사용 propTypes 금지 */
+    /* state value 직접 할당 금지 */
+    'react/no-direct-mutation-state': 'error',
+
+    /* 한개의 파일에 여러 컴포넌트 정의 금지 */
+    'react/no-multi-comp': ['warn', { ignoreStateless: true }],
+
+    /* UNSAFE_라이프사이클 사용금지 */
+    'react/no-unsafe': 'error',
+
+    /* [미작동] 미사용 propTypes 금지 */
     'react/no-unused-prop-types': 'warn',
+
+    /* [미작동] 미사용 state 금지 */
+    'react/no-unused-state': 'warn',
 
     /* stateless 함수형태 사용 */
     'react/prefer-stateless-function': ['off', { ignorePureComponents: true }],
@@ -159,7 +185,7 @@ module.exports = {
       },
     }],
 
-    // propTypes에서 required는 처음에, 콜백(on~)은 마지막에 정의하도록 순서 제한
+    /* [미작동] propTypes에서 required는 처음에, 콜백(on~)은 마지막에 정의하도록 순서 제한 */
     'react/sort-prop-types': ['error', {
       ignoreCase: true,
       callbacksLast: true,
@@ -167,5 +193,8 @@ module.exports = {
       sortShapeProp: true,
       noSortAlphabetically: true,
     }],
+
+    /* [미작동] 생성자에서 state 초기화 - 금지 */
+    'react/state-in-constructor': ['error', 'never'],
   },
 };

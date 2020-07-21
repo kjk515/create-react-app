@@ -165,6 +165,12 @@ module.exports = {
     /* 블록 사용시 라인공백 감싸기 */
     'padded-blocks': 'off',
 
+    /* 변수 선언 후 라인 공백 */
+    'padding-line-between-statements': ['warn',
+      { blankLine: "always", prev: ["const", "let", "var"], next: "*"},
+      { blankLine: "any",    prev: ["const", "let", "var"], next: ["const", "let", "var", "return", "export"]},
+    ],
+
     /* 객체 속성 선언시 따옴표 사용 */
     'quote-props': ['error', 'as-needed', { keywords: false, unnecessary: true, numbers: false }],
 

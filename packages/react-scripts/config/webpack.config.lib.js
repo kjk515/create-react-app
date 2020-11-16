@@ -57,6 +57,24 @@ const sassModuleRegex = /\.module\.(scss|sass)$/;
 
 const nodeExternals = require('webpack-node-externals');
 
+
+const resolveTsconfigPathsToAlias = ({
+  tsConfigPath = paths.appPath + '/tsconfig.json',
+  webpackConfigBasePath = paths.appSrc,
+} = {}) => {
+  const tsConfigPaths = require(tsConfigPath).compilerOptions.paths;
+  const aliases = {};
+
+  Object.keys(tsConfigPaths).map((pathKey) => {
+    const key = pathKey.replace('/*', '');
+    const value = path.resolve(webpackConfigBasePath, tsConfigPaths[pathKey][0].replace('/*', '').replace('*', ''));
+
+    aliases[key] = value;
+  });
+
+  return aliases;
+}
+
 // development, production 모드 별 config파일 나눌 수 있을듯
 // This is the production and development configuration.
 // It is focused on developer experience, fast rebuilds, and a minimal bundle.
@@ -273,7 +291,7 @@ module.exports = function(webpackEnv) {
         // Support React Native Web
         // https://www.smashingmagazine.com/2016/08/a-glimpse-into-the-future-with-react-native-for-web/
         'react-native': 'react-native-web',
-        '~': paths.appSrc,
+        ...resolveTsconfigPathsToAlias(),
       },
       plugins: [
         // Adds support for installing with Plug'n'Play, leading to faster installs and adding

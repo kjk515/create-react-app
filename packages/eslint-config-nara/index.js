@@ -130,9 +130,7 @@ module.exports = {
           "protected-static-method",
           "private-static-method",
 
-          "public-method",
-          "protected-method",
-          "private-method",
+          "method",
         ]
       }],
 

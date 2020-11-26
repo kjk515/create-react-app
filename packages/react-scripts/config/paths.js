@@ -20,6 +20,7 @@ const appDirectory = fs.realpathSync(process.cwd());
 const resolveApp = relativePath => path.resolve(appDirectory, relativePath);
 
 const envPublicUrl = process.env.PUBLIC_URL;
+const libBaseDir = process.env.LIB_BASE_DIR || 'lib';
 
 /**
  * 경로 끝에 /를 붙이거나 빼는 함수
@@ -101,8 +102,8 @@ module.exports = {
   appNodeModules: resolveApp('node_modules'),
   publicUrl: getPublicUrl(resolveApp('package.json')),
   servedPath: getServedPath(resolveApp('package.json')),
-  libBuild: resolveApp('lib'), // NARA
-  libIndexJs: resolveModule(resolveApp, process.env.LIB_INDEX || 'src/lib/index'), // NARA
+  libBuild: resolveApp(libBaseDir), // NARA
+  libIndexJs: resolveModule(resolveApp, process.env.LIB_INDEX || `src/${libBaseDir}/index`), // NARA
   libTsConfig: resolveApp(process.env.LIB_TS_CONFIG || 'src/lib/tsconfig.json'), // NARA
   proxyProperties: resolveApp('config/proxy.js'), // NARA
 };
@@ -128,7 +129,7 @@ module.exports = {
   appNodeModules: resolveApp('node_modules'),
   publicUrl: getPublicUrl(resolveApp('package.json')),
   servedPath: getServedPath(resolveApp('package.json')),
-  libBuild: resolveApp('lib'), // NARA
+  libBuild: resolveApp(libBaseDir), // NARA
   libIndexJs: resolveModule(resolveApp, process.env.LIB_INDEX || 'src/lib/index'), // NARA
   libTsConfig: resolveApp(process.env.LIB_TS_CONFIG || 'src/lib/tsconfig.json'), // NARA
   proxyProperties: resolveApp('config/proxy.js'), // NARA
@@ -136,7 +137,7 @@ module.exports = {
   ownPath: resolveOwn('.'),
   ownNodeModules: resolveOwn('node_modules'), // This is empty on npm 3
   appTypeDeclarations: resolveApp('src/react-app-env.d.ts'),
-  ownTypeDeclarations: resolveOwn('lib/react-app.d.ts'),
+  ownTypeDeclarations: resolveOwn(`${libBaseDir}/react-app.d.ts`),
 };
 
 const ownPackageJson = require('../package.json');
@@ -171,7 +172,7 @@ if (
     ownPath: resolveOwn('.'),
     ownNodeModules: resolveOwn('node_modules'),
     appTypeDeclarations: resolveOwn('template/src/react-app-env.d.ts'),
-    ownTypeDeclarations: resolveOwn('lib/react-app.d.ts'),
+    ownTypeDeclarations: resolveOwn(`${libBaseDir}/react-app.d.ts`),
   };
 }
 // @remove-on-eject-end
